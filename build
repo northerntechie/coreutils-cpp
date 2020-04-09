@@ -1,1 +1,1 @@
-g++ -o src/echo src/echo.cpp
+g++ -o src/echo src/echo.cpp -Ilib

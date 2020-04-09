@@ -14,85 +14,94 @@
 
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
+
 /* C++ includes */
+#include <cassert>
 #include <string>
+#include <cstring>
 #include <iostream>
 /* End of C++ includes */
+
 /* C includes */
-#include <config.h>
-#include <stdio.h>
-#include <assert.h>
-#include <sys/types.h>
-#include "system.h"
+//#include <config.h>
+//#include <stdio.h>
+//#include <assert.h>
+//#include <sys/types.h>
+//#include "system.h"
 /* Endof C includes */
 
 /* The official name of this program (e.g., no 'g' prefix).  */
 #define PROGRAM_NAME "echo"
 
+/* AUTHORS
+   Original authors: Brian Fox, Chet Ramey
+   Migration author: Todd Saharchuk
+*/
 #define AUTHORS \
-    proper_name ("Brian Fox"), \ // Original author
-    proper_name ("Chet Ramey"), \ // Original author
-    proper_name ("Todd Saharchuk") // C++ migration author
+    proper_name ("Brian Fox"), \
+    proper_name ("Chet Ramey"), \
+    proper_name ("Todd Saharchuk")
     
 /* If true, interpret backslash escapes by default.  */
 #ifndef DEFAULT_ECHO_TO_XPG
 enum { DEFAULT_ECHO_TO_XPG = false };
 #endif
 
-void usage (int status)
+/* constexpr defines */
+constexpr auto HELP_OPTION_DESCRIPTION =
+    "      --help     display this help and exit\n";
+constexpr auto VERSION_OPTION_DESCRIPTION =              \
+    "      --version  output version information and exit\n";
+constexpr auto USAGE_BUILTIN_WARNING = "\nNOTE: your shell may have its own version of "
+    PROGRAM_NAME ", which usually supersedes\n" 
+    "the version described here.  Please refer to your shell's documentation\n" 
+    "for details about the options it supports.\n";
+
+void usage (const int status)
 {
   /* STATUS should always be EXIT_SUCCESS (unlike in most other
      utilities which would call emit_try_help otherwise).  */
-  assert (status == EXIT_SUCCESS);
-
-  printf (_("\
-Usage: %s [SHORT-OPTION]... [STRING]...\n\
-  or:  %s LONG-OPTION\n\
-"), program_name, program_name);
-  fputs (_("\
-Echo the STRING(s) to standard output.\n\
-\n\
-  -n             do not output the trailing newline\n\
-"), stdout);
-  fputs (_(DEFAULT_ECHO_TO_XPG
-           ? N_("\
-  -e             enable interpretation of backslash escapes (default)\n\
-  -E             disable interpretation of backslash escapes\n")
-           : N_("\
-  -e             enable interpretation of backslash escapes\n\
-  -E             disable interpretation of backslash escapes (default)\n")),
-         stdout);
-  fputs (HELP_OPTION_DESCRIPTION, stdout);
-  fputs (VERSION_OPTION_DESCRIPTION, stdout);
-  fputs (_("\
-\n\
-If -e is in effect, the following sequences are recognized:\n\
-\n\
-"), stdout);
-  fputs (_("\
-  \\\\      backslash\n\
-  \\a      alert (BEL)\n\
-  \\b      backspace\n\
-  \\c      produce no further output\n\
-  \\e      escape\n\
-  \\f      form feed\n\
-  \\n      new line\n\
-  \\r      carriage return\n\
-  \\t      horizontal tab\n\
-  \\v      vertical tab\n\
-"), stdout);
-  fputs (_("\
-  \\0NNN   byte with octal value NNN (1 to 3 digits)\n\
-  \\xHH    byte with hexadecimal value HH (1 to 2 digits)\n\
-"), stdout);
-  printf (USAGE_BUILTIN_WARNING, PROGRAM_NAME);
-  emit_ancillary_info (PROGRAM_NAME);
-  exit (status);
+    assert (status == EXIT_SUCCESS);
+    
+    std::cout << "Usage: " << PROGRAM_NAME
+              << " [SHORT-OPTION]... [STRING]...\n"
+              << " or: " << PROGRAM_NAME << " LONG-OPTION\n";
+    std::cout << "Echo the STRING(s) to standard output.\n\n"
+              << " -n             do not output the trailing newline\n";
+    if(DEFAULT_ECHO_TO_XPG)
+    {
+        std::cout << " -e             enable interpretation of backslash escapes (default)\n"
+                  << " -E             disable interpretation of backslash escapes\n";
+    }
+    else
+    {
+        std::cout << " -e             enable interpretation of backslash escapes\n"
+                  << " -E             disable interpretation of backslash escapes (default)\n";
+    }
+    std::cout << HELP_OPTION_DESCRIPTION;
+    std::cout << VERSION_OPTION_DESCRIPTION;
+    std::cout << "\n"
+              << "If -e is in effect, the following sequences are recognized:\n\n";
+    std::cout << "\\\\      backslash\n"
+              << "\\a      alert (BEL)\n"
+              << "\\b      backspace\n"
+              << "\\c      produce no further output\n"
+              << "\\e      escape\n"
+              << "\\f      form feed\n"
+              << "\\n      new line\n"
+              << "\\r      carriage return\n"
+              << "\\t      horizontal tab\n"
+              << "\\v      vertical tab\n"
+              << "\\0NNN   byte with octal value NNN (1 to 3 digits)\n"
+              << "\\xHH    byte with hexadecimal value HH (1 to 2 digits)\n";
+    std::cout << USAGE_BUILTIN_WARNING << PROGRAM_NAME;
+    // TODO: migrate emit_ancillary_info()
+    //emit_ancillary_info (PROGRAM_NAME);
+    exit (status);
 }
 
 /* Convert C from hexadecimal character to integer.  */
-static int
-hextobin (unsigned char c)
+static int hextobin (unsigned char c)
 {
   switch (c)
     {
@@ -110,34 +119,37 @@ hextobin (unsigned char c)
    '-n', then don't print a trailing newline.  We also support the
    echo syntax from Version 9 unix systems. */
 
-int
-main (int argc, char **argv)
+int main (int argc, char **argv)
 {
-  bool display_return = true;
-  bool posixly_correct = getenv ("POSIXLY_CORRECT");
-  bool allow_options =
-    (! posixly_correct
-     || (! DEFAULT_ECHO_TO_XPG && 1 < argc && STREQ (argv[1], "-n")));
+    //bool display_return = true;
+    //bool posixly_correct = getenv ("POSIXLY_CORRECT");
 
-  /* System V machines already have a /bin/sh with a v9 behavior.
-     Use the identical behavior for these machines so that the
-     existing system shell scripts won't barf.  */
-  bool do_v9 = DEFAULT_ECHO_TO_XPG;
+    //bool allow_options =
+    //(! posixly_correct
+    //|| (! DEFAULT_ECHO_TO_XPG && 1 < argc && STREQ (argv[1], "-n")));
 
-  initialize_main (&argc, &argv);
-  set_program_name (argv[0]);
-  setlocale (LC_ALL, "");
-  bindtextdomain (PACKAGE, LOCALEDIR);
-  textdomain (PACKAGE);
+    bool allow_options = (1 < argc) && (std::strcmp(argv[1], "-n") == 0);
 
-  atexit (close_stdout);
+    /* System V machines already have a /bin/sh with a v9 behavior.
+       Use the identical behavior for these machines so that the
+       existing system shell scripts won't barf.  */
+    //bool do_v9 = DEFAULT_ECHO_TO_XPG;
 
-  /* We directly parse options, rather than use parse_long_options, in
-     order to avoid accepting abbreviations.  */
-  if (allow_options && argc == 2)
+    //initialize_main (&argc, &argv); //empty
+    
+    //set_program_name (argv[0]);
+    //setlocale (LC_ALL, "");
+    //bindtextdomain (PACKAGE, LOCALEDIR);
+    //textdomain (PACKAGE);
+
+    atexit (close_stdout);
+
+    /* We directly parse options, rather than use parse_long_options, in
+       order to avoid accepting abbreviations.  */
+    if (allow_options && argc == 2)
     {
-      if (STREQ (argv[1], "--help"))
-        usage (EXIT_SUCCESS);
+        if (STREQ (argv[1], "--help"))
+            usage (EXIT_SUCCESS);
 
       if (STREQ (argv[1], "--version"))
         {
@@ -147,8 +159,8 @@ main (int argc, char **argv)
         }
     }
 
-  --argc;
-  ++argv;
+    --argc;
+    ++argv;
 
   if (allow_options)
     while (argc > 0 && *argv[0] == '-')
