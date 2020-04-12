@@ -37,10 +37,7 @@
    Original authors: Brian Fox, Chet Ramey
    Migration author: Todd Saharchuk
 */
-#define AUTHORS \
-    proper_name ("Brian Fox"), \
-    proper_name ("Chet Ramey"), \
-    proper_name ("Todd Saharchuk")
+constexpr auto AUTHORS = "Todd Saharchuk";
     
 /* If true, interpret backslash escapes by default.  */
 #ifndef DEFAULT_ECHO_TO_XPG
@@ -48,6 +45,7 @@ enum { DEFAULT_ECHO_TO_XPG = false };
 #endif
 
 /* constexpr defines */
+constexpr auto VERSION = "0.1.0";
 constexpr auto HELP_OPTION_DESCRIPTION =
     "      --help     display this help and exit\n";
 constexpr auto VERSION_OPTION_DESCRIPTION =              \
@@ -121,20 +119,21 @@ static int hextobin (unsigned char c)
 
 int main (int argc, char **argv)
 {
-    //bool display_return = true;
+    bool display_return = true;
     //bool posixly_correct = getenv ("POSIXLY_CORRECT");
 
     //bool allow_options =
     //(! posixly_correct
     //|| (! DEFAULT_ECHO_TO_XPG && 1 < argc && STREQ (argv[1], "-n")));
 
-    bool allow_options = (1 < argc) && (std::strcmp(argv[1], "-n") == 0);
+    bool allow_options = (1 < argc); //&& (std::strcmp(argv[1], "-n") == 0);
 
     /* System V machines already have a /bin/sh with a v9 behavior.
        Use the identical behavior for these machines so that the
        existing system shell scripts won't barf.  */
     //bool do_v9 = DEFAULT_ECHO_TO_XPG;
-
+    bool do_v9 = false;
+    
     //initialize_main (&argc, &argv); //empty
     
     //set_program_name (argv[0]);
@@ -142,19 +141,18 @@ int main (int argc, char **argv)
     //bindtextdomain (PACKAGE, LOCALEDIR);
     //textdomain (PACKAGE);
 
-    atexit (close_stdout);
+    //atexit (close_stdout);
 
     /* We directly parse options, rather than use parse_long_options, in
        order to avoid accepting abbreviations.  */
     if (allow_options && argc == 2)
     {
-        if (STREQ (argv[1], "--help"))
+        if(std::strcmp(argv[1], "--help") == 0)
             usage (EXIT_SUCCESS);
-
-      if (STREQ (argv[1], "--version"))
+        if (std::strcmp(argv[1], "--version") == 0)
         {
-          version_etc (stdout, PROGRAM_NAME, PACKAGE_NAME, Version, AUTHORS,
-                       (char *) NULL);
+            std::cout << PROGRAM_NAME << ", " << VERSION
+                      << ", " << AUTHORS << "\n";
           return EXIT_SUCCESS;
         }
     }
@@ -208,7 +206,7 @@ int main (int argc, char **argv)
 
 just_echo:
 
-  if (do_v9 || posixly_correct)
+  if (do_v9)
     {
       while (argc > 0)
         {
@@ -250,7 +248,7 @@ just_echo:
                       if (! ('0' <= *s && *s <= '7'))
                         break;
                       c = *s++;
-                      FALLTHROUGH;
+                      //FALLTHROUGH;
                     case '1': case '2': case '3':
                     case '4': case '5': case '6': case '7':
                       c -= '0';
