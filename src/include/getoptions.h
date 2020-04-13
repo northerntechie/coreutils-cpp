@@ -3,17 +3,27 @@
  * 
  * A C++ implmentation of a header only command line option parser.
  *
+ * coreutils-cpp is a toy library based on the GNU coreutil library
+ * command line tools and is used for research purposes only.  It
+ * is a study on the issues involved with moving legacy C code to
+ * modern C++.
+ *
  * (c) Todd Saharchuk, 2020.
  * 
- * MIT license.
+ * Licensed under GPL v3.
  */
 #pragma once
 #ifndef __GETOPTIONS_H__
 #define __GETOPTIONS_H__
 
+#include <stdexcept>
+#include <optional>
+#include <tuple>
+#include <utility>
 #include <string>
 #include <map>
 #include <vector>
+#include "globals.h"
 
 using namespace std::string_literals;
 
@@ -24,7 +34,7 @@ namespace ccpp
         char shortOpt;
         const std::string longOpt;
         const std::string help;
-        const std::string value = ""s;
+        std::string value = ""s;
         option() {};
         option(char shortOpt,
                const std::string longOpt,
@@ -34,7 +44,7 @@ namespace ccpp
             longOpt{longOpt}, help{help},
             value{value} {};
     };
-    
+
     class getoptions
     {
     private:
@@ -55,10 +65,10 @@ namespace ccpp
                 longOpts.insert(std::make_pair(opt.longOpt,opt));
             }
         };
-        getoptions() {};
     public:
-    getoptions(const std::vector<option>& db)
-        : db{db}
+        getoptions() {};
+        getoptions(std::vector<option> db)
+            : db{db}
         {
             _buildShortMap();
             _buildLongMap();
@@ -73,7 +83,8 @@ namespace ccpp
         }
     };
 
-
+    typedef std::tuple<std::vector<option>, std::optional<std::string>> getoptions_e;
+    
     bool isShort(const std::string& str)
     {
         if(str.size() < 2)
@@ -87,12 +98,24 @@ namespace ccpp
             return false;
     };
 
-    
-    const std::vector<option> parseOptions(const int argc, const char** argv)
+    bool isLong(const std::string str)
+    {
+        
+    }
+
+    const getoptions_e
+    error(const std::string str)
+    {
+        return std::make_tuple(std::vector<option>(),str);
+    }
+
+    const getoptions_e
+        parseOptions(const int argc, const char** argv,
+                     std::vector<option>& opts)
     {
         if(argc < 2)
         {
-            return std::vector<option>();
+            return error(ERR_BAD_OPTION);
         }
         std::vector<std::string> tokens;
         std::vector<option> options;
@@ -103,10 +126,42 @@ namespace ccpp
         }
 
         option curOpt;
+        bool foundOption = false;
         
         for(auto token : tokens)
         {
-            ;
+            if(foundOption)
+            {
+                curOpt.value = token;
+                options.push_back(curOpt);
+                foundOption = false;                   
+            }
+            else
+            {
+                if(isShort(token))
+                {
+                    if(token.length() < 2)
+                    {
+                        ;
+                    }
+                    else if(token.length() == 2)
+                    {
+                        ;//processSingleShort(token,options);
+                    }
+                    else
+                    {
+                        return error(ERR_BAD_OPTION);
+                    }                        
+                }
+                else if(isLong(token))
+                {
+                    ;
+                }
+                else
+                {
+                    return error(ERR_BAD_OPTION);
+                }
+            }
         }
     };
     

@@ -1,2 +1,0 @@
-g++ -o src/echo src/echo.cpp -Ilib -std=c++14
-g++ -o src/tests/ut_getoptions src/tests/ut_getoptions.cpp -Ilib/ -Isrc/include -std=c++14

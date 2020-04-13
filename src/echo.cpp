@@ -13,7 +13,10 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  
+
+   Migrated C++ code (c) Todd Saharchuk, 2020.
+*/
 
 /* C++ includes */
 #include <cassert>

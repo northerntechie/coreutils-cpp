@@ -20,6 +20,13 @@ using namespace std::string_literals;
 
 int main()
 {
+    std::cout << "Test: .0001\n";
+    int argc = 2;
+    const char *argv[] = {
+        "ut_getoptions",
+        "-h",
+    };
+    
     std::cout << "ccpp::getoptions class tests: ";
     std::vector<ccpp::option> options =
         {
@@ -27,9 +34,17 @@ int main()
             {'v',"version"s,"Show version information"s},
             {'i',"input-file"s,"Input file"s,"default.txt"}
         };
-    
-    ccpp::getoptions go(options);
 
+    ccpp::getoptions go;
+    auto [ opts, err ] = parseOptions(argc,argv,options);
+    if(err != std::nullopt)
+    {
+        quit("FAILED: parseOptions() generated an error!"s + *err);
+    }
+    else
+    {
+        go = ccpp::getoptions(opts);
+    }
     ccpp::option opt1 = go.getShortOption('h');
     if(opt1.shortOpt != 'h' ||
        opt1.longOpt != "help" ||

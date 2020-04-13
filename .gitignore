@@ -1,3 +1,7 @@
 *~
 */*~
 */*/*~
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake-build-debug/
