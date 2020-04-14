@@ -23,7 +23,8 @@
 #include <string>
 #include <cstring>
 #include <iostream>
-#include <boost/program_options.hpp>
+//#include <boost/program_options.hpp>
+#include "docopt/docopt.h"
 /* End of C++ includes */
 
 /* C includes */
@@ -58,6 +59,19 @@ constexpr auto USAGE_BUILTIN_WARNING = "\nNOTE: your shell may have its own vers
     PROGRAM_NAME ", which usually supersedes\n" 
     "the version described here.  Please refer to your shell's documentation\n" 
     "for details about the options it supports.\n";
+
+static const char USAGE[] =
+R"(echo.
+
+    Usage:
+      naval_fate (-h | --help)
+      naval_fate --version
+
+    Options:
+      -h --help     Show this screen.
+      -e            Enable interpretation of backslash escapes (default).
+      --version     Show version.
+)";
 
 void usage (const int status)
 {
@@ -121,8 +135,7 @@ static int hextobin (unsigned char c)
    '-n', then don't print a trailing newline.  We also support the
    echo syntax from Version 9 unix systems. */
 
-int main (int argc, char **argv)
-{
+int main (int argc, char **argv) {
     bool display_return = true;
     //bool posixly_correct = getenv ("POSIXLY_CORRECT");
 
@@ -137,9 +150,9 @@ int main (int argc, char **argv)
        existing system shell scripts won't barf.  */
     //bool do_v9 = DEFAULT_ECHO_TO_XPG;
     bool do_v9 = false;
-    
+
     //initialize_main (&argc, &argv); //empty
-    
+
     //set_program_name (argv[0]);
     //setlocale (LC_ALL, "");
     //bindtextdomain (PACKAGE, LOCALEDIR);
@@ -147,8 +160,7 @@ int main (int argc, char **argv)
 
     //atexit (close_stdout);
 
-    /* We directly parse options, rather than use parse_long_options, in
-       order to avoid accepting abbreviations.  */
+/*
     if (allow_options && argc == 2)
     {
         if(std::strcmp(argv[1], "--help") == 0)
@@ -160,11 +172,26 @@ int main (int argc, char **argv)
           return EXIT_SUCCESS;
         }
     }
+*/
 
     --argc;
     ++argv;
 
-  if (allow_options)
+    if (allow_options)
+    {
+        std::map<std::string, docopt::value> args
+                = docopt::docopt(USAGE,
+                                 {argv + 1, argv + argc},
+                                 true,               // show help if requested
+                                 "echo (cpp) 0.1.0");  // version string
+
+        for (auto const &arg : args) {
+            std::cout << arg.first << arg.second << std::endl;
+        }
+
+        return 0;
+    }
+
     while (argc > 0 && *argv[0] == '-')
       {
         char const *temp = argv[0] + 1;

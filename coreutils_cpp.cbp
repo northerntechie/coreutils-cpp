@@ -27,16 +27,6 @@
 					<DistClean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/home/todd/work/Developer/C++/coreutils-cpp"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 			<Target title="echo">
 				<Option output="/home/todd/work/Developer/C++/coreutils-cpp/build/echo" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="build"/>
@@ -45,6 +35,7 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/todd/work/Developer/C++/coreutils-cpp/src/include"/>
+					<Add directory="/usr/local/include/docopt"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 echo"/>
@@ -61,6 +52,7 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/todd/work/Developer/C++/coreutils-cpp/src/include"/>
+					<Add directory="/usr/local/include/docopt"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 echo/fast"/>
@@ -69,33 +61,11 @@
 					<DistClean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="ut_getoptions">
-				<Option output="/home/todd/work/Developer/C++/coreutils-cpp/build/ut_getoptions" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="build"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/todd/work/Developer/C++/coreutils-cpp/src/include"/>
-				</Compiler>
+			<Target title="edit_cache">
+				<Option working_dir="/home/todd/work/Developer/C++/coreutils-cpp"/>
+				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 ut_getoptions"/>
-					<CompileFile command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="ut_getoptions/fast">
-				<Option output="/home/todd/work/Developer/C++/coreutils-cpp/build/ut_getoptions" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="build"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/todd/work/Developer/C++/coreutils-cpp/src/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 ut_getoptions/fast"/>
+					<Build command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 edit_cache"/>
 					<CompileFile command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
@@ -105,16 +75,8 @@
 		<Unit filename="/home/todd/work/Developer/C++/coreutils-cpp/src/echo.cpp">
 			<Option target="echo"/>
 		</Unit>
-		<Unit filename="/home/todd/work/Developer/C++/coreutils-cpp/src/include/getoptions.h">
-			<Option target="echo"/>
-			<Option target="ut_getoptions"/>
-		</Unit>
 		<Unit filename="/home/todd/work/Developer/C++/coreutils-cpp/src/include/globals.h">
 			<Option target="echo"/>
-			<Option target="ut_getoptions"/>
-		</Unit>
-		<Unit filename="/home/todd/work/Developer/C++/coreutils-cpp/src/tests/ut_getoptions.cpp">
-			<Option target="ut_getoptions"/>
 		</Unit>
 		<Unit filename="/home/todd/work/Developer/C++/coreutils-cpp/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
