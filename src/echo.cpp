@@ -15,7 +15,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.  
 
-   Migrated C++ code (c) Todd Saharchuk, 2020.
+   Migrated C++ code Copyright (C`) Todd Saharchuk, 2020.
 */
 
 /* C++ includes */
@@ -23,6 +23,7 @@
 #include <string>
 #include <cstring>
 #include <iostream>
+#include <boost/program_options.hpp>
 /* End of C++ includes */
 
 /* C includes */
