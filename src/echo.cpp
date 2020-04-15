@@ -15,16 +15,18 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.  
 
-   Migrated C++ code Copyright (C`) Todd Saharchuk, 2020.
+   Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
 */
 
 /* C++ includes */
 #include <cassert>
+#include <cstring>
 #include <string>
 #include <cstring>
 #include <iostream>
-//#include <boost/program_options.hpp>
+#include <cstdlib>
 #include "docopt/docopt.h"
+#include "fmt/format.h"
 /* End of C++ includes */
 
 /* C includes */
@@ -64,19 +66,41 @@ static const char USAGE[] =
 R"(echo.
 
     Usage:
-      naval_fate (-h | --help)
-      naval_fate --version
+      echo (-h | --help)
+      echo --version
 
     Options:
       -h --help     Show this screen.
-      -e            Enable interpretation of backslash escapes (default).
       --version     Show version.
+      -e            Enable interpretation of backslash escapes (default).
+      -E            Disable interpretation of backslash escapes.
+      -n            Do not display the trailing newline.
+
+    Backlash Escapes:
+      If -e is in effect, the following sequences are recognized:
+        \\       backslash
+        \a      alert (BEL)
+        \b      backspace
+        \c      produce no further output
+        \e      escape
+        \f      form feed
+        \n      new line
+        \r      carriage return
+        \t      horizontal tab
+        \v      vertical tab
+        \0NNN   byte with octal value NNN (1 to 3 digits)
+        \xHH    byte with hexadecimal value HH (1 to 2 digits)
+    Note:
+      To preserve exact spacing, use single- or double-quotes for strings.
 )";
 
+/*
 void usage (const int status)
 {
-  /* STATUS should always be EXIT_SUCCESS (unlike in most other
-     utilities which would call emit_try_help otherwise).  */
+  */
+/* STATUS should always be EXIT_SUCCESS (unlike in most other
+     utilities which would call emit_try_help otherwise).  *//*
+
     assert (status == EXIT_SUCCESS);
     
     std::cout << "Usage: " << PROGRAM_NAME
@@ -115,6 +139,7 @@ void usage (const int status)
     //emit_ancillary_info (PROGRAM_NAME);
     exit (status);
 }
+*/
 
 /* Convert C from hexadecimal character to integer.  */
 static int hextobin (unsigned char c)
@@ -160,37 +185,48 @@ int main (int argc, char **argv) {
 
     //atexit (close_stdout);
 
-/*
-    if (allow_options && argc == 2)
-    {
-        if(std::strcmp(argv[1], "--help") == 0)
-            usage (EXIT_SUCCESS);
-        if (std::strcmp(argv[1], "--version") == 0)
-        {
-            std::cout << PROGRAM_NAME << ", " << VERSION
-                      << ", " << AUTHORS << "\n";
-          return EXIT_SUCCESS;
-        }
-    }
-*/
-
-    --argc;
-    ++argv;
-
     if (allow_options)
     {
+        std::vector<char*> opts;
+        char** pargv = argv;
+        int _argc = argc;
+        // Add program name
+        opts.push_back(*pargv);
+        ++pargv;
+
+        while(_argc > 1)
+        {
+            std::cout << "_argc= " << _argc << ", strlen(*pargv)= " << std::strlen(*pargv)
+                      << ", *pargv[0]= " << (*pargv)[0]
+                      << ", *pargv[1]= " << (*pargv)[1] << "\n";
+            if(std::strlen(*pargv) > 1 && ((*pargv)[0] == '-' ||
+                    ((*pargv)[0] == '-' && (*pargv)[1] == '-')))
+            // Found option - add to vector
+            {
+                opts.push_back(*pargv);
+                --_argc;
+                ++pargv;
+            }
+            else
+                break;
+        }
+        for(auto str : opts)
+        {
+
+        }
         std::map<std::string, docopt::value> args
                 = docopt::docopt(USAGE,
                                  {argv + 1, argv + argc},
-                                 true,               // show help if requested
+                                 false,               // show help if requested
                                  "echo (cpp) 0.1.0");  // version string
-
-        for (auto const &arg : args) {
-            std::cout << arg.first << arg.second << std::endl;
-        }
-
-        return 0;
     }
+
+    if (display_return)
+    {
+        std::cout << "\n";
+    }
+
+    return EXIT_SUCCESS;
 
     while (argc > 0 && *argv[0] == '-')
       {
@@ -315,6 +351,8 @@ just_echo:
     }
 
   if (display_return)
-    putchar ('\n');
+  {
+      std::cout << "\n";
+  }
   return EXIT_SUCCESS;
 }
