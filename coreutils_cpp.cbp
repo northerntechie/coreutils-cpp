@@ -5,7 +5,7 @@
 		<Option title="coreutils_cpp"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\..\usr\local\;CMake Files\..\..\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\..\..\usr\local\lib\cmake\docopt\;CMake Files\..\..\..\..\..\..\usr\lib\;CMake Files\..\..\..\..\..\..\usr\lib\cmake\;CMake Files\..\..\..\..\..\..\usr\lib\cmake\fmt\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\..\usr\local\;CMake Files\..\..\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\..\..\usr\local\lib\cmake\docopt\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/home/todd/work/Developer/C++/coreutils-cpp"/>
@@ -92,18 +92,6 @@
 		</Unit>
 		<Unit filename="/home/todd/work/Developer/C++/coreutils-cpp/../../../../../../usr/local/lib/cmake/docopt/docopt-targets.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\local\lib\cmake\docopt\"/>
-		</Unit>
-		<Unit filename="/home/todd/work/Developer/C++/coreutils-cpp/../../../../../../usr/lib/cmake/fmt/fmt-config-version.cmake">
-			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\lib\cmake\fmt\"/>
-		</Unit>
-		<Unit filename="/home/todd/work/Developer/C++/coreutils-cpp/../../../../../../usr/lib/cmake/fmt/fmt-config.cmake">
-			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\lib\cmake\fmt\"/>
-		</Unit>
-		<Unit filename="/home/todd/work/Developer/C++/coreutils-cpp/../../../../../../usr/lib/cmake/fmt/fmt-targets-none.cmake">
-			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\lib\cmake\fmt\"/>
-		</Unit>
-		<Unit filename="/home/todd/work/Developer/C++/coreutils-cpp/../../../../../../usr/lib/cmake/fmt/fmt-targets.cmake">
-			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\lib\cmake\fmt\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

@@ -10,8 +10,7 @@ set(CMAKE_CXX_STANDARD 20)
 include_directories(src/include)
 
 find_package(docopt 0.6 REQUIRED)
-find_package(fmt 4.0.0 REQUIRED)
 add_executable(echo
         src/include/globals.h
         src/echo.cpp)
-target_link_libraries(echo docopt fmt)
+target_link_libraries(echo docopt)
