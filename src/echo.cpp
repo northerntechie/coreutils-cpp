@@ -1,32 +1,32 @@
 /* echo.cpp, migrated from,
-   echo.c, derived from code echo.c in Bash.
-   Copyright (C) 1987-2020 Free Software Foundation, Inc.
+echo.c, derived from code echo.c in Bash.
+Copyright (C) 1987-2020 Free Software Foundation, Inc.
 
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <https://www.gnu.org/licenses/>.  
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-   Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
+Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
 */
 
 /* C++ includes */
-#include <cassert>
-#include <cstring>
-#include <string>
-#include <cstring>
-#include <iostream>
-#include <cstdlib>
 #include "docopt/docopt.h"
 #include "fmt/format.h"
+#include <cassert>
+#include <cstdlib>
+#include <cstring>
+#include <iostream>
+#include <string>
+#include <variant>
 /* End of C++ includes */
 
 /* C includes */
@@ -41,11 +41,11 @@
 #define PROGRAM_NAME "echo"
 
 /* AUTHORS
-   Original authors: Brian Fox, Chet Ramey
-   Migration author: Todd Saharchuk
+Original authors: Brian Fox, Chet Ramey
+Migration author: Todd Saharchuk
 */
 constexpr auto AUTHORS = "Todd Saharchuk";
-    
+
 /* If true, interpret backslash escapes by default.  */
 #ifndef DEFAULT_ECHO_TO_XPG
 enum { DEFAULT_ECHO_TO_XPG = false };
@@ -55,20 +55,18 @@ enum { DEFAULT_ECHO_TO_XPG = false };
 constexpr auto VERSION = "0.1.0";
 constexpr auto HELP_OPTION_DESCRIPTION =
     "      --help     display this help and exit\n";
-constexpr auto VERSION_OPTION_DESCRIPTION =              \
+constexpr auto VERSION_OPTION_DESCRIPTION =
     "      --version  output version information and exit\n";
-constexpr auto USAGE_BUILTIN_WARNING = "\nNOTE: your shell may have its own version of "
-    PROGRAM_NAME ", which usually supersedes\n" 
-    "the version described here.  Please refer to your shell's documentation\n" 
-    "for details about the options it supports.\n";
+constexpr auto USAGE_BUILTIN_WARNING = "\nNOTE: your shell may have its own version of " PROGRAM_NAME ", which usually supersedes\n"
+                                       "the version described here.  Please refer to your shell's documentation\n"
+                                       "for details about the options it supports.\n";
 
-static const char USAGE[] =
-R"(echo.
-
+constexpr std::string_view USAGE =
+    R"(echo.
     Usage:
+      echo [-e|-E|-n] <string>
       echo (-h | --help)
       echo --version
-
     Options:
       -h --help     Show this screen.
       --version     Show version.
@@ -78,18 +76,18 @@ R"(echo.
 
     Backlash Escapes:
       If -e is in effect, the following sequences are recognized:
-        \\       backslash
-        \a      alert (BEL)
-        \b      backspace
-        \c      produce no further output
-        \e      escape
-        \f      form feed
-        \n      new line
-        \r      carriage return
-        \t      horizontal tab
-        \v      vertical tab
-        \0NNN   byte with octal value NNN (1 to 3 digits)
-        \xHH    byte with hexadecimal value HH (1 to 2 digits)
+      \\       backslash
+      \a      alert (BEL)
+      \b      backspace
+      \c      produce no further output
+      \e      escape
+      \f      form feed
+      \n      new line
+      \r      carriage return
+      \t      horizontal tab
+      \v      vertical tab
+      \0NNN   byte with octal value NNN (1 to 3 digits)
+      \xHH    byte with hexadecimal value HH (1 to 2 digits)
     Note:
       To preserve exact spacing, use single- or double-quotes for strings.
 )";
@@ -97,82 +95,89 @@ R"(echo.
 /*
 void usage (const int status)
 {
-  */
+*/
 /* STATUS should always be EXIT_SUCCESS (unlike in most other
-     utilities which would call emit_try_help otherwise).  *//*
+utilities which would call emit_try_help otherwise).  */
+/*
 
-    assert (status == EXIT_SUCCESS);
-    
-    std::cout << "Usage: " << PROGRAM_NAME
-              << " [SHORT-OPTION]... [STRING]...\n"
-              << " or: " << PROGRAM_NAME << " LONG-OPTION\n";
-    std::cout << "Echo the STRING(s) to standard output.\n\n"
-              << " -n             do not output the trailing newline\n";
-    if(DEFAULT_ECHO_TO_XPG)
-    {
-        std::cout << " -e             enable interpretation of backslash escapes (default)\n"
-                  << " -E             disable interpretation of backslash escapes\n";
-    }
-    else
-    {
-        std::cout << " -e             enable interpretation of backslash escapes\n"
-                  << " -E             disable interpretation of backslash escapes (default)\n";
-    }
-    std::cout << HELP_OPTION_DESCRIPTION;
-    std::cout << VERSION_OPTION_DESCRIPTION;
-    std::cout << "\n"
-              << "If -e is in effect, the following sequences are recognized:\n\n";
-    std::cout << "\\\\      backslash\n"
-              << "\\a      alert (BEL)\n"
-              << "\\b      backspace\n"
-              << "\\c      produce no further output\n"
-              << "\\e      escape\n"
-              << "\\f      form feed\n"
-              << "\\n      new line\n"
-              << "\\r      carriage return\n"
-              << "\\t      horizontal tab\n"
-              << "\\v      vertical tab\n"
-              << "\\0NNN   byte with octal value NNN (1 to 3 digits)\n"
-              << "\\xHH    byte with hexadecimal value HH (1 to 2 digits)\n";
-    std::cout << USAGE_BUILTIN_WARNING << PROGRAM_NAME;
-    // TODO: migrate emit_ancillary_info()
-    //emit_ancillary_info (PROGRAM_NAME);
-    exit (status);
+assert (status == EXIT_SUCCESS);
+
+std::cout << "Usage: " << PROGRAM_NAME
+<< " [SHORT-OPTION]... [STRING]...\n"
+<< " or: " << PROGRAM_NAME << " LONG-OPTION\n";
+std::cout << "Echo the STRING(s) to standard output.\n\n"
+<< " -n             do not output the trailing newline\n";
+if(DEFAULT_ECHO_TO_XPG)
+{
+std::cout << " -e             enable interpretation of backslash escapes (default)\n"
+<< " -E             disable interpretation of backslash escapes\n";
+}
+else
+{
+std::cout << " -e             enable interpretation of backslash escapes\n"
+<< " -E             disable interpretation of backslash escapes (default)\n";
+}
+std::cout << HELP_OPTION_DESCRIPTION;
+std::cout << VERSION_OPTION_DESCRIPTION;
+std::cout << "\n"
+<< "If -e is in effect, the following sequences are recognized:\n\n";
+std::cout << "\\\\      backslash\n"
+<< "\\a      alert (BEL)\n"
+<< "\\b      backspace\n"
+<< "\\c      produce no further output\n"
+<< "\\e      escape\n"
+<< "\\f      form feed\n"
+<< "\\n      new line\n"
+<< "\\r      carriage return\n"
+<< "\\t      horizontal tab\n"
+<< "\\v      vertical tab\n"
+<< "\\0NNN   byte with octal value NNN (1 to 3 digits)\n"
+<< "\\xHH    byte with hexadecimal value HH (1 to 2 digits)\n";
+std::cout << USAGE_BUILTIN_WARNING << PROGRAM_NAME;
+// TODO: migrate emit_ancillary_info()
+//emit_ancillary_info (PROGRAM_NAME);
+exit (status);
 }
 */
 
 /* Convert C from hexadecimal character to integer.  */
 static int hextobin (unsigned char c)
 {
-  switch (c)
+    switch (c)
     {
-    default: return c - '0';
-    case 'a': case 'A': return 10;
-    case 'b': case 'B': return 11;
-    case 'c': case 'C': return 12;
-    case 'd': case 'D': return 13;
-    case 'e': case 'E': return 14;
-    case 'f': case 'F': return 15;
+        default: return c - '0';
+        case 'a':
+        case 'A': return 10;
+        case 'b':
+        case 'B': return 11;
+        case 'c':
+        case 'C': return 12;
+        case 'd':
+        case 'D': return 13;
+        case 'e':
+        case 'E': return 14;
+        case 'f':
+        case 'F': return 15;
     }
 }
 
 /* Print the words in LIST to standard output.  If the first word is
-   '-n', then don't print a trailing newline.  We also support the
-   echo syntax from Version 9 unix systems. */
+'-n', then don't print a trailing newline.  We also support the
+echo syntax from Version 9 unix systems. */
 
-int main (int argc, char **argv) {
-    bool display_return = true;
+int main (int argc, char **argv)
+{
     //bool posixly_correct = getenv ("POSIXLY_CORRECT");
 
     //bool allow_options =
     //(! posixly_correct
     //|| (! DEFAULT_ECHO_TO_XPG && 1 < argc && STREQ (argv[1], "-n")));
 
-    bool allow_options = (1 < argc); //&& (std::strcmp(argv[1], "-n") == 0);
+    bool allow_options = (1 < argc);//&& (std::strcmp(argv[1], "-n") == 0);
 
     /* System V machines already have a /bin/sh with a v9 behavior.
-       Use the identical behavior for these machines so that the
-       existing system shell scripts won't barf.  */
+Use the identical behavior for these machines so that the
+existing system shell scripts won't barf.  */
     //bool do_v9 = DEFAULT_ECHO_TO_XPG;
     bool do_v9 = false;
 
@@ -184,175 +189,281 @@ int main (int argc, char **argv) {
     //textdomain (PACKAGE);
 
     //atexit (close_stdout);
+    char **m_argv;
+    std::vector<std::string> strs;
+    std::map<std::string, docopt::value> _args;
 
     if (allow_options)
     {
-        std::vector<char*> opts;
-        char** pargv = argv;
+        std::vector<std::string> args;
+        char **pargv = argv;
         int _argc = argc;
         // Add program name
-        opts.push_back(*pargv);
+        args.emplace_back (*pargv);
+        --_argc;
         ++pargv;
 
-        while(_argc > 1)
+        while (_argc > 0)
         {
-            std::cout << "_argc= " << _argc << ", strlen(*pargv)= " << std::strlen(*pargv)
-                      << ", *pargv[0]= " << (*pargv)[0]
-                      << ", *pargv[1]= " << (*pargv)[1] << "\n";
-            if(std::strlen(*pargv) > 1 && ((*pargv)[0] == '-' ||
-                    ((*pargv)[0] == '-' && (*pargv)[1] == '-')))
+            if (std::strlen (*pargv) > 1 && ((*pargv)[0] == '-' || ((*pargv)[0] == '-' && (*pargv)[1] == '-')))
             // Found option - add to vector
             {
-                opts.push_back(*pargv);
+                args.emplace_back (*pargv);
                 --_argc;
                 ++pargv;
             }
             else
                 break;
         }
-        for(auto str : opts)
+        while(_argc > 0)
         {
-
+            strs.emplace_back(*pargv);
+            --_argc;
+            ++pargv;
         }
-        std::map<std::string, docopt::value> args
-                = docopt::docopt(USAGE,
-                                 {argv + 1, argv + argc},
-                                 false,               // show help if requested
-                                 "echo (cpp) 0.1.0");  // version string
+        _args =
+            docopt::docopt(USAGE.data(),
+                           args,
+                           false,              // show help if requested
+                           "echo (cpp) 0.1.0");// version string
+    }
+
+    if(_args["-e"].asBool() == true)
+    {
+        for(auto& str : strs)
+        {
+            for(auto it = str.begin(); it != str.end(); it++)
+            {
+                if(*it == '\\')
+                {
+                    it++;
+                    char c = '\\';
+                    switch(*it)
+                    {
+                        case 'a': c = '\a'; break;
+                        case 'b': c = '\b'; break;
+                        case 'c': return EXIT_SUCCESS;
+                        case 'e': c = '\x1B'; break;
+                        case 'f': c = '\f'; break;
+                        case 'n': c = '\n'; break;
+                        case 'r': c = '\r'; break;
+                        case 't': c = '\t'; break;
+                        case 'v': c = '\v'; break;
+                        case 'x': {
+                            unsigned char ch = *s;
+                            if (!isxdigit (ch))
+                                goto not_an_escape;
+                            s++;
+                            c = hextobin (ch);
+                            ch = *s;
+                            if (isxdigit (ch))
+                            {
+                                s++;
+                                c = c * 16 + hextobin (ch);
+                            }
+                        }
+                        break;
+                        case '0':
+                            c = 0;
+                            if (!('0' <= *s && *s <= '7'))
+                                break;
+                            c = *s++;
+                        //FALLTHROUGH;
+                        case '1':
+                        case '2':
+                        case '3':
+                        case '4':
+                        case '5':
+                        case '6':
+                        case '7':
+                            c -= '0';
+                            if ('0' <= *s && *s <= '7')
+                                c = c * 8 + (*s++ - '0');
+                            if ('0' <= *s && *s <= '7')
+                                c = c * 8 + (*s++ - '0');
+                            break;
+                        case '\\':
+                            break;
+
+                        not_an_escape:
+                        default:
+                            putchar ('\\');
+                            break;
+                    }
+
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        for(auto& str : strs)
+        {
+            std::cout << str << " ";
+        }
+    }
+    // End of echo display
+    if (_args["-n"].asBool() == false)
+    {
+        std::cout << "\n";
+    }
+    free (m_argv);
+    return EXIT_SUCCESS;
+/*
+    while (argc > 0 && *argv[0] == '-')
+    {
+        char const *temp = argv[0] + 1;
+        size_t i;
+
+        */
+/* If it appears that we are handling options, then make sure that
+all of the options specified are actually valid.  Otherwise, the
+string should just be echoed.  *//*
+
+
+        for (i = 0; temp[i]; i++)
+            switch (temp[i])
+            {
+                case 'e':
+                case 'E':
+                case 'n': break;
+                default: goto just_echo;
+            }
+
+        if (i == 0)
+            goto just_echo;
+
+        */
+/* All of the options in TEMP are valid options to ECHO.
+Handle them. *//*
+
+        while (*temp)
+            switch (*temp++)
+            {
+                case 'e':
+                    do_v9 = true;
+                    break;
+
+                case 'E':
+                    do_v9 = false;
+                    break;
+
+                case 'n':
+                    display_return = false;
+                    break;
+            }
+
+        argc--;
+        argv++;
+    }
+
+just_echo:
+
+    if (do_v9)
+    {
+        while (argc > 0)
+        {
+            char const *s = argv[0];
+            unsigned char c;
+
+            while ((c = *s++))
+            {
+                if (c == '\\' && *s)
+                {
+                    switch (c = *s++)
+                    {
+                        case 'a':
+                            c = '\a';
+                            break;
+                        case 'b':
+                            c = '\b';
+                            break;
+                        case 'c': return EXIT_SUCCESS;
+                        case 'e':
+                            c = '\x1B';
+                            break;
+                        case 'f':
+                            c = '\f';
+                            break;
+                        case 'n':
+                            c = '\n';
+                            break;
+                        case 'r':
+                            c = '\r';
+                            break;
+                        case 't':
+                            c = '\t';
+                            break;
+                        case 'v':
+                            c = '\v';
+                            break;
+                        case 'x': {
+                            unsigned char ch = *s;
+                            if (!isxdigit (ch))
+                                goto not_an_escape;
+                            s++;
+                            c = hextobin (ch);
+                            ch = *s;
+                            if (isxdigit (ch))
+                            {
+                                s++;
+                                c = c * 16 + hextobin (ch);
+                            }
+                        }
+                        break;
+                        case '0':
+                            c = 0;
+                            if (!('0' <= *s && *s <= '7'))
+                                break;
+                            c = *s++;
+                        //FALLTHROUGH;
+                        case '1':
+                        case '2':
+                        case '3':
+                        case '4':
+                        case '5':
+                        case '6':
+                        case '7':
+                            c -= '0';
+                            if ('0' <= *s && *s <= '7')
+                                c = c * 8 + (*s++ - '0');
+                            if ('0' <= *s && *s <= '7')
+                                c = c * 8 + (*s++ - '0');
+                            break;
+                        case '\\':
+                            break;
+
+                        not_an_escape:
+                        default:
+                            putchar ('\\');
+                            break;
+                    }
+                }
+                putchar (c);
+            }
+            argc--;
+            argv++;
+            if (argc > 0)
+                putchar (' ');
+        }
+    }
+    else
+    {
+        while (argc > 0)
+        {
+            fputs (argv[0], stdout);
+            argc--;
+            argv++;
+            if (argc > 0)
+                putchar (' ');
+        }
     }
 
     if (display_return)
     {
         std::cout << "\n";
     }
-
     return EXIT_SUCCESS;
-
-    while (argc > 0 && *argv[0] == '-')
-      {
-        char const *temp = argv[0] + 1;
-        size_t i;
-
-        /* If it appears that we are handling options, then make sure that
-           all of the options specified are actually valid.  Otherwise, the
-           string should just be echoed.  */
-
-        for (i = 0; temp[i]; i++)
-          switch (temp[i])
-            {
-            case 'e': case 'E': case 'n':
-              break;
-            default:
-              goto just_echo;
-            }
-
-        if (i == 0)
-          goto just_echo;
-
-        /* All of the options in TEMP are valid options to ECHO.
-           Handle them. */
-        while (*temp)
-          switch (*temp++)
-            {
-            case 'e':
-              do_v9 = true;
-              break;
-
-            case 'E':
-              do_v9 = false;
-              break;
-
-            case 'n':
-              display_return = false;
-              break;
-            }
-
-        argc--;
-        argv++;
-      }
-
-just_echo:
-
-  if (do_v9)
-    {
-      while (argc > 0)
-        {
-          char const *s = argv[0];
-          unsigned char c;
-
-          while ((c = *s++))
-            {
-              if (c == '\\' && *s)
-                {
-                  switch (c = *s++)
-                    {
-                    case 'a': c = '\a'; break;
-                    case 'b': c = '\b'; break;
-                    case 'c': return EXIT_SUCCESS;
-                    case 'e': c = '\x1B'; break;
-                    case 'f': c = '\f'; break;
-                    case 'n': c = '\n'; break;
-                    case 'r': c = '\r'; break;
-                    case 't': c = '\t'; break;
-                    case 'v': c = '\v'; break;
-                    case 'x':
-                      {
-                        unsigned char ch = *s;
-                        if (! isxdigit (ch))
-                          goto not_an_escape;
-                        s++;
-                        c = hextobin (ch);
-                        ch = *s;
-                        if (isxdigit (ch))
-                          {
-                            s++;
-                            c = c * 16 + hextobin (ch);
-                          }
-                      }
-                      break;
-                    case '0':
-                      c = 0;
-                      if (! ('0' <= *s && *s <= '7'))
-                        break;
-                      c = *s++;
-                      //FALLTHROUGH;
-                    case '1': case '2': case '3':
-                    case '4': case '5': case '6': case '7':
-                      c -= '0';
-                      if ('0' <= *s && *s <= '7')
-                        c = c * 8 + (*s++ - '0');
-                      if ('0' <= *s && *s <= '7')
-                        c = c * 8 + (*s++ - '0');
-                      break;
-                    case '\\': break;
-
-                    not_an_escape:
-                    default:  putchar ('\\'); break;
-                    }
-                }
-              putchar (c);
-            }
-          argc--;
-          argv++;
-          if (argc > 0)
-            putchar (' ');
-        }
-    }
-  else
-    {
-      while (argc > 0)
-        {
-          fputs (argv[0], stdout);
-          argc--;
-          argv++;
-          if (argc > 0)
-            putchar (' ');
-        }
-    }
-
-  if (display_return)
-  {
-      std::cout << "\n";
-  }
-  return EXIT_SUCCESS;
+*/
 }
