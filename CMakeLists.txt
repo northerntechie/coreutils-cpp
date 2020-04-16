@@ -10,7 +10,23 @@ set(CMAKE_CXX_STANDARD 20)
 include_directories(src/include)
 
 find_package(docopt 0.6 REQUIRED)
+
 add_executable(echo
         src/include/globals.h
         src/echo.cpp)
 target_link_libraries(echo docopt)
+
+add_executable(touch
+        src/include/globals.h
+        src/touch.cpp)
+target_link_libraries(touch docopt)
+
+add_executable(b2sum
+        src/include/globals.h
+        src/b2sum.cpp)
+target_link_libraries(b2sum docopt)
+
+add_executable(basename
+        src/include/globals.h
+        src/basename.cpp)
+target_link_libraries(basename docopt)

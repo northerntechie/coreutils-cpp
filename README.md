@@ -8,18 +8,18 @@ arbitrary limits.
 
 The programs that can be built with this package are:
 
-  echo
+  b2sum echo touch
   
 Future:
 
-  arch b2sum base32 base64 basename basenc cat chcon chgrp chmod chown
+  arch base32 base64 basename basenc cat chcon chgrp chmod chown
   chroot cksum comm coreutils cp csplit cut date dd df dir dircolors dirname
   du env expand expr factor false fmt fold groups head hostid hostname
   id install join kill link ln logname ls md5sum mkdir mkfifo mknod mktemp
   mv nice nl nohup nproc numfmt od paste pathchk pinky pr printenv printf ptx
   pwd readlink realpath rm rmdir runcon seq sha1sum sha224sum sha256sum
   sha384sum sha512sum shred shuf sleep sort split stat stdbuf stty sum sync
-  tac tail tee test timeout touch tr true truncate tsort tty uname unexpand
+  tac tail tee test timeout tr true truncate tsort tty uname unexpand
   uniq unlink uptime users vdir wc who whoami yes
 
 Unlike the rest of the GNU system, these programs do not conform to
@@ -27,7 +27,7 @@ POSIX, with BSD and other extensions.  For closer conformance, choose another
 library.
 
 This library is a toy library to explore the issues of migrating system tools
-to modern C++.  Use at your own risk.
+programmed in C to modern C++.  Use at your own risk.
 
 LICENSE: Same as original GNU coreutils, GPL v1.3.
 
