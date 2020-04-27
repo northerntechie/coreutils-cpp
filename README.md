@@ -1,5 +1,5 @@
 These are some of the GNU core utilities migrated to C++ code through a 
-complete rewrite using modern C++ conventions and techniues.  This package
+complete rewrite using modern C++ conventions and techniques.  This package
 is the union of the GNU fileutils, sh-utils, and textutils packages.
 
 Most of these programs lack significant advantages over their Unix
@@ -8,11 +8,11 @@ arbitrary limits.
 
 The programs that can be built with this package are:
 
-  b2sum echo touch
+  b2sum echo touch basename basenc cat chcon chgrp 
   
 Future:
 
-  arch base32 base64 basename basenc cat chcon chgrp chmod chown
+  arch base32 base64 chmod chown
   chroot cksum comm coreutils cp csplit cut date dd df dir dircolors dirname
   du env expand expr factor false fmt fold groups head hostid hostname
   id install join kill link ln logname ls md5sum mkdir mkfifo mknod mktemp
@@ -31,7 +31,7 @@ programmed in C to modern C++.  Use at your own risk.
 
 LICENSE: Same as original GNU coreutils, GPL v1.3.
 
-(c) Todd Saharchuk, 2020.
+C++ migrated implementation code (c) Todd Saharchuk, 2020.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or

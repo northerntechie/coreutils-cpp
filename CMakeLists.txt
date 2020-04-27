@@ -30,3 +30,28 @@ add_executable(basename
         src/include/globals.h
         src/basename.cpp)
 target_link_libraries(basename docopt)
+
+add_executable(basenc
+        src/include/globals.h
+        src/basenc.cpp)
+target_link_Libraries(basenc docopt)
+
+add_executable(cat
+        src/include/globals.h
+        src/cat.cpp)
+target_link_libraries(cat docopt)
+
+add_executable(chcon
+        src/include/globals.h
+        src/chcon.cpp)
+target_link_libraries(chcon docopt)
+
+add_executable(chgrp
+        src/include/globals.h
+        src/chgrp.cpp)
+target_link_libraries(chgrp docopt)
+
+add_executable(chmod
+        src/include/globals.h
+        src/chmod.cpp)
+target_link_libraries(chmod docopt)

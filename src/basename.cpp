@@ -236,6 +236,7 @@ int main(int argc, char** argv)
                         true,
                         "basename (cpp) 0.1.0");
 
+    // TODO(northerntechie): Finish implementation
     for(auto kv : args)
     {
         std::cout << kv.first << " : " << kv.second << "\n";
