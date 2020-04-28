@@ -41,6 +41,8 @@ R"(chmod.
        chmod [options] --reference=RFILE FILE...
 
      Options:
+       -h --help              Show this screen
+       --version              Show version
        -c, --changes          Like verbose but report only when a change is made
        -f, --silent, --quiet  Suppress most error messages
        -v, --verbose          Output a diagnostic for every file processed

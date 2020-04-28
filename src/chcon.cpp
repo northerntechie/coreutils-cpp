@@ -41,6 +41,8 @@ R"(chcon.
        With --reference, change the security context of each FILE to that of RFILE.
 
      Options:
+       --help             Show this screen
+       --version             Show version
        --dereference         Affect the referent of each symbolic link (this is
                                the default), rather than the symbolic link itself
        -h, --no-dereference  Affect symbolic links instead of any referenced file
@@ -71,7 +73,7 @@ int main(int argc, char** argv)
         docopt::docopt(USAGE,
                        {argv+1, argv+argc},
                         true,
-                        "basename (cpp) 0.1.0");
+                        "chcon (cpp) 0.1.0");
 
     // TODO(northerntechie): Finish implementation
 

@@ -8,12 +8,13 @@ arbitrary limits.
 
 The programs that can be built with this package are:
 
-  b2sum echo touch basename basenc cat chcon chgrp 
+  b2sum echo touch basename basenc cat chcon chgrp chmod  chown chroot 
+  cksum comm coreutils 
   
 Future:
 
-  arch base32 base64 chmod chown
-  chroot cksum comm coreutils cp csplit cut date dd df dir dircolors dirname
+  arch base32 base64
+  cp csplit cut date dd df dir dircolors dirname
   du env expand expr factor false fmt fold groups head hostid hostname
   id install join kill link ln logname ls md5sum mkdir mkfifo mknod mktemp
   mv nice nl nohup nproc numfmt od paste pathchk pinky pr printenv printf ptx

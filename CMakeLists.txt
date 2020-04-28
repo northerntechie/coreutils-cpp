@@ -55,3 +55,33 @@ add_executable(chmod
         src/include/globals.h
         src/chmod.cpp)
 target_link_libraries(chmod docopt)
+
+add_executable(chown
+        src/include/globals.h
+        src/chown.cpp)
+target_link_libraries(chown docopt)
+
+add_executable(chroot
+        src/include/globals.h
+        src/chroot.cpp)
+target_link_libraries(chroot docopt)
+
+add_executable(cksum
+        src/include/globals.h
+        src/cksum.cpp)
+target_link_libraries(cksum docopt)
+
+add_executable(comm
+        src/include/globals.h
+        src/comm.cpp)
+target_link_libraries(comm docopt)
+
+add_executable(coreutils
+        src/include/globals.h
+        src/coreutils.cpp)
+target_link_libraries(coreutils docopt)
+
+add_executable(cp
+        src/include/globals.h
+        src/cp.cpp)
+target_link_libraries(cp docopt)

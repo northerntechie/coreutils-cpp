@@ -44,6 +44,8 @@ R"(touch.
          [ -t DATETIME ] [ --time=WORD ]
 
      Options:
+       --help             Show this screen
+       --version             Show version
        -a                    Change only the access time.
        -c, --no-create       Do not create any files.
        -d, --date=STRING     Parse STRING and use it instead of current time.

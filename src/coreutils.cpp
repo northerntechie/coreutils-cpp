@@ -1,4 +1,4 @@
-/** .cpp, migrated from .c from coreutils
+/** coreutils.cpp, migrated from coreutils.c from coreutils
  * Copyright (C) 1987-2020 Free Software Foundation, Inc.
  * Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
  *
@@ -16,6 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Original Authors:
+ * Alex Deymo <deymo@chromium.org>
  *
  * C++ Code migration Todd Saharchuk tsaharchuk1@athabasca.edu
  */
@@ -31,18 +32,17 @@
 #define PROGRAM_NAME ""
 #define AUTHORS ""
 constexpr auto USAGE =
-R"(<prog>.
+R"(coreutils.
 
      Usage:
-       <prog> [options] POS_ARGS...
+       coreutils --coreutils-prog=PROGRAM_NAME [PARAMETERS...]
 
+       Execute the PROGRAM_NAME built-in program with the given PARAMETERS.
 
      Options:
-       -h --help              Show this screen
-       --version              Show version
-
-     Examples:
-
+       -h --help                      Show this screen
+       --version                      Show version
+       --coreutils-prog=PROGRAM_NAME  Coreutils program
 )";
 
 int main(int argc, char** argv)
@@ -51,7 +51,7 @@ int main(int argc, char** argv)
         docopt::docopt(USAGE,
                        {argv+1, argv+argc},
                         true,
-                        "<prog> (cpp) 0.1.0");
+                        "coreutils (cpp) 0.1.0");
 
     // TODO(northerntechie): Finish implementation
     for(auto kv : args)

@@ -1,4 +1,5 @@
-/** .cpp, migrated from .c from coreutils
+/** cksum.cpp, migrated from cksum.c from coreutils
+ * cksum -- calculate and print POSIX checksums and sizes of files
  * Copyright (C) 1987-2020 Free Software Foundation, Inc.
  * Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
  *
@@ -16,8 +17,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Original Authors:
+ * Written by Q. Frank Xia, qx@math.columbia.edu.
+ * Cosmetic changes and reorganization by David MacKenzie, djm@gnu.ai.mit.edu.
  *
- * C++ Code migration Todd Saharchuk tsaharchuk1@athabasca.edu
+ * C++ Code migration Todd Saharchuk, tsaharchuk1@athabasca.edu
+ *
  */
 
 // C++ includes
@@ -28,21 +32,15 @@
 // End of C++ includes
 
 /* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME ""
+#define PROGRAM_NAME "cksum"
 #define AUTHORS ""
 constexpr auto USAGE =
-R"(<prog>.
+R"(cksum.
 
      Usage:
-       <prog> [options] POS_ARGS...
+       cksum  FILE...
 
-
-     Options:
-       -h --help              Show this screen
-       --version              Show version
-
-     Examples:
-
+       Print CRC checksum and byte counts of each FILE.
 )";
 
 int main(int argc, char** argv)
@@ -51,7 +49,7 @@ int main(int argc, char** argv)
         docopt::docopt(USAGE,
                        {argv+1, argv+argc},
                         true,
-                        "<prog> (cpp) 0.1.0");
+                        "cksum (cpp) 0.1.0");
 
     // TODO(northerntechie): Finish implementation
     for(auto kv : args)

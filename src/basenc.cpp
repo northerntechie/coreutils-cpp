@@ -38,6 +38,8 @@ R"(basenc.
          If specified, also remove a trailing SUFFIX.
 
      Options:
+       -h --help             Show this screen
+       --version             Show version
        -d, --decode          Decode data
        -w, --wrap=COLS       Wrap encoded lines after COLS character (default 76)
        -i, --ignore-garbage  When decoding, ignore non-alphabet characters\n\
@@ -69,7 +71,7 @@ int main(int argc, char** argv)
         docopt::docopt(USAGE,
                        {argv+1, argv+argc},
                         true,
-                        "basename (cpp) 0.1.0");
+                        "basenc (cpp) 0.1.0");
 
     // TODO(northerntechie): Finish implementation
     for(auto kv : args)

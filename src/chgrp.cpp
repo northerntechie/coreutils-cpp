@@ -41,6 +41,8 @@ R"(chgrp.
        With --reference, change the group of each FILE to that of RFILE.
 
      Options:
+       -h --help              Show this screen
+       --version              Show version
        -c, --changes          Like verbose but report only when a change is made
        -f, --silent, --quiet  Suppress most error messages
        -v, --verbose          Output a diagnostic for every file processed
@@ -78,7 +80,7 @@ int main(int argc, char** argv)
         docopt::docopt(USAGE,
                        {argv+1, argv+argc},
                         true,
-                        "basename (cpp) 0.1.0");
+                        "chgrp (cpp) 0.1.0");
 
     // TODO(northerntechie): Finish implementation
     for(auto kv : args)

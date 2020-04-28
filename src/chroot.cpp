@@ -16,8 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Original Authors:
- *
- * C++ Code migration Todd Saharchuk tsaharchuk1@athabasca.edu
+ * Roland McGrath
  */
 
 // C++ includes
@@ -28,21 +27,26 @@
 // End of C++ includes
 
 /* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME ""
-#define AUTHORS ""
+#define PROGRAM_NAME "chroot"
+#define AUTHORS "Roland McGrath, Todd Saharchuk"
 constexpr auto USAGE =
-R"(<prog>.
+R"(chroot.
 
      Usage:
-       <prog> [options] POS_ARGS...
+       chroot [options] NEWROOT [COMMAND [ARGS...]]
+       chroot [options]
 
+       Run COMMAND with root directory set to NEWROOT.
 
      Options:
        -h --help              Show this screen
        --version              Show version
+       --groups=G_LIST        Specify supplementary groups as g1,g2,..,gN
+       --userspec=USER:GROUP  Specify user and group (ID or name) to use
+       --skip-chdir           Do not change working directory
 
-     Examples:
-
+     Notes:
+       If no command is given, run '\"$SHELL\" -i' (default: '/bin/sh -i').
 )";
 
 int main(int argc, char** argv)
@@ -51,7 +55,7 @@ int main(int argc, char** argv)
         docopt::docopt(USAGE,
                        {argv+1, argv+argc},
                         true,
-                        "<prog> (cpp) 0.1.0");
+                        "chroot (cpp) 0.1.0");
 
     // TODO(northerntechie): Finish implementation
     for(auto kv : args)

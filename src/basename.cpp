@@ -39,6 +39,8 @@ R"(basename.
          If specified, also remove a trailing SUFFIX.
 
      Options:
+       -h --help            Show this screen.
+       --version            Show version.
        -a, --multiple       Support multiple arguments and treat each as a NAME
        -s, --suffix=SUFFIX  Remove a trailing SUFFIX; implies -a.
        -z, --zero           End each output line with NUL, not newline.
