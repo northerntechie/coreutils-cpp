@@ -1,4 +1,5 @@
-/** .cpp, migrated from .c from coreutils
+/** dirname.cpp, migrated from dirname.c from coreutils
+ * dirname -- strip suffix from file name
  * Copyright (C) 1987-2020 Free Software Foundation, Inc.
  * Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
  *
@@ -16,6 +17,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Original Authors:
+ * David MacKenzie
+ * Jim Meyering
  *
  * C++ Code migration:
  * Todd Saharchuk <tsaharchuk1@athabasca.edu>
@@ -30,23 +33,29 @@
 // End of C++ includes
 
 /* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME ""
+#define PROGRAM_NAME "dirname"
 
 constexpr auto VERSION = cc::versionString(PROGRAM_NAME);
 
 constexpr auto USAGE =
-R"(<prog>.
+R"(dirname.
 
      Usage:
-       <prog> [options] POS_ARGS...
+       dirname [options] NAME...
 
+       Output each NAME with its last non-slash component and trailing slashes
+         removed; if NAME contains no /'s, output '.' (meaning the current directory).
 
      Options:
        -h --help              Show this screen
        --version              Show version
+       -z, --zero             End each output line with NUL, not newline
 
      Examples:
 
+       dirname /usr/bin/          -> \"/usr\"
+       dirname dir1/str dir2/str  -> \"dir1\" followed by \"dir2\"
+       dirname stdio.h            -> \".\"
 )";
 
 int main(int argc, char** argv)

@@ -22,12 +22,34 @@
 
 #include <string>
 
+
+/**
+ * Global Defines
+ */
+
 using namespace std::string_literals;
 
-namespace ccpp
+namespace cc
 {
 /* Error Code Strings */
 constexpr auto ERR_BAD_OPTION = "Error: Bad or missing option!";
 
-} /* End of namespace ccpp */
+/* Version info */
+constexpr auto MAJOR_VER = 0;  // Development = 0
+constexpr auto MINOR_VER = 1;
+constexpr auto PATCH_VER = 0;
+
+template<typename T>
+constexpr auto stringify(T args...)
+{
+  return std::string_view(args);
+}
+
+constexpr auto versionString(const std::string_view prog)
+{
+  return stringify(prog, " (cpp) ", MAJOR_VER,
+      ".", MINOR_VER, ".", PATCH_VER);
+}
+
+} /* End of namespace cc */
 #endif

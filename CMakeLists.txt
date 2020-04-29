@@ -85,3 +85,38 @@ add_executable(cp
         src/include/globals.h
         src/cp.cpp)
 target_link_libraries(cp docopt)
+
+add_executable(csplit
+        src/include/globals.h
+        src/csplit.cpp)
+target_link_libraries(csplit docopt)
+
+add_executable(cut
+        src/include/globals.h
+        src/cut.cpp)
+target_link_libraries(cut docopt)
+
+add_executable(date
+        src/include/globals.h
+        src/date.cpp)
+target_link_libraries(date docopt)
+
+add_executable(dd
+        src/include/globals.h
+        src/dd.cpp)
+target_link_libraries(dd docopt)
+
+add_executable(df
+        src/include/globals.h
+        src/df.cpp)
+target_link_libraries(df docopt)
+
+add_executable(dircolors
+        src/include/globals.h
+        src/dircolors.cpp)
+target_link_libraries(dircolors docopt)
+
+add_executable(dirname
+        src/include/globals.h
+        src/dirname.cpp)
+target_link_libraries(dirname docopt)

@@ -4,17 +4,23 @@ is the union of the GNU fileutils, sh-utils, and textutils packages.
 
 Most of these programs lack significant advantages over their Unix
 and GNU counterparts, such as greater speed, additional options, and fewer
-arbitrary limits.
+arbitrary limits.  The only advantage is the implementations are developed
+using modern C++.
+
+Important: 
+2020-04-28 Current library build is only a skeleton build.  The docopt usage
+strings are built for most programs (not in future).  You can fork the project if you want to
+finish implementations.  PR's are welcome.
 
 The programs that can be built with this package are:
 
   b2sum echo touch basename basenc cat chcon chgrp chmod  chown chroot 
-  cksum comm coreutils 
+  cksum comm coreutils cp csplit cut date dd df dircolors 
   
 Future:
 
   arch base32 base64
-  cp csplit cut date dd df dir dircolors dirname
+  dir dirname
   du env expand expr factor false fmt fold groups head hostid hostname
   id install join kill link ln logname ls md5sum mkdir mkfifo mknod mktemp
   mv nice nl nohup nproc numfmt od paste pathchk pinky pr printenv printf ptx

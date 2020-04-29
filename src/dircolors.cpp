@@ -1,4 +1,5 @@
-/** .cpp, migrated from .c from coreutils
+/** dircolors.cpp, migrated from dircolors.c from coreutils
+ * dircolors - output commands to set the LS_COLOR environment variable
  * Copyright (C) 1987-2020 Free Software Foundation, Inc.
  * Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
  *
@@ -16,6 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Original Authors:
+ * H. Peter Anvin
  *
  * C++ Code migration:
  * Todd Saharchuk <tsaharchuk1@athabasca.edu>
@@ -30,23 +32,30 @@
 // End of C++ includes
 
 /* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME ""
+#define PROGRAM_NAME "dircolors"
 
 constexpr auto VERSION = cc::versionString(PROGRAM_NAME);
 
 constexpr auto USAGE =
-R"(<prog>.
+R"(dircolors.
 
      Usage:
-       <prog> [options] POS_ARGS...
+       dircolors [options] FILE
 
+       Output commands to set the LS_COLORS environment variable.
 
      Options:
-       -h --help              Show this screen
-       --version              Show version
+       -h --help                 Show this screen
+       --version                 Show version
+       -b, --sh, --bourne-shell  Output Bourne shell code to set LS_COLORS
+       -c, --csh, --c-shell      Output C shell code to set LS_COLORS
+       -p, --print-database      Output defaults
 
-     Examples:
+     Note:
 
+       If FILE is specified, read it to determine which colors to use for which
+         file types and extensions.  Otherwise, a precompiled database is used.
+         For details on the format of these files, run 'dircolors --print-database'.
 )";
 
 int main(int argc, char** argv)
