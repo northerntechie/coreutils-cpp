@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.15)
 
 project(coreutils_cpp LANGUAGES CXX)
 
+# Some of the coreutils original names are reserved in cmake
+# turn off policy for the reserved keywords to allow for the
+# use of the original coreutils program names
 if(POLICY CMP0037)
     cmake_policy(SET CMP0037 OLD)
 endif()
@@ -303,6 +306,38 @@ add_executable(pr
         src/include/globals.h
         src/pr.cpp)
 target_link_libraries(pr docopt)
+
+add_executable(printenv
+        src/include/globals.h
+        src/printenv.cpp)
+target_link_libraries(printenv docopt)
+
+add_executable(ptx
+        src/include/globals.h
+        src/ptx.cpp)
+target_link_libraries(ptx docopt)
+
+add_executable(printf
+        src/include/globals.h
+        src/printf.cpp)
+target_link_libraries(printf docopt)
+
+add_executable(pwd
+        src/include/globals.h
+        src/pwd.cpp)
+target_link_libraries(pwd docopt)
+
+add_executable(readlink
+        src/include/globals.h
+        src/readlink.cpp)
+target_link_libraries(readlink docopt)
+
+add_executable(realpath
+        src/include/globals.h
+        src/realpath.cpp)
+target_link_libraries(realpath docopt)
+
+
 
 add_executable(true
         src/include/globals.h

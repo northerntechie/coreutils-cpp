@@ -19,15 +19,15 @@ The programs that can be built with this package are:
   env expand expr factor false fmt fold groups head hostid hostname
   id install join kill link ln logname ls md5sum mkdir mkfifo mknod 
   mktemp mv nice nl nohup nproc numfmt od paste pathchk pinky pr 
-
+  printenv printf ptx pwd readlink 
+  
   true 
   
 Future:
 
   arch base32 base64 dir 
   
-  printenv printf ptx
-  pwd readlink realpath rm rmdir runcon seq sha1sum sha224sum sha256sum
+  realpath rm rmdir runcon seq sha1sum sha224sum sha256sum
   sha384sum sha512sum shred shuf sleep sort split stat stdbuf stty sum sync
   tac tail tee test timeout tr truncate tsort tty uname unexpand
   uniq unlink uptime users vdir wc who whoami yes

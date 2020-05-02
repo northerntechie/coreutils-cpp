@@ -61,6 +61,142 @@
 					<DistClean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="realpath">
+				<Option output="/home/todd/work/Developer/C++/coreutils-cpp/build/realpath" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/todd/work/Developer/C++/coreutils-cpp/src/include"/>
+					<Add directory="/usr/local/include/docopt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 realpath"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="realpath/fast">
+				<Option output="/home/todd/work/Developer/C++/coreutils-cpp/build/realpath" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/todd/work/Developer/C++/coreutils-cpp/src/include"/>
+					<Add directory="/usr/local/include/docopt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 realpath/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="readlink">
+				<Option output="/home/todd/work/Developer/C++/coreutils-cpp/build/readlink" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/todd/work/Developer/C++/coreutils-cpp/src/include"/>
+					<Add directory="/usr/local/include/docopt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 readlink"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="readlink/fast">
+				<Option output="/home/todd/work/Developer/C++/coreutils-cpp/build/readlink" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/todd/work/Developer/C++/coreutils-cpp/src/include"/>
+					<Add directory="/usr/local/include/docopt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 readlink/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ptx">
+				<Option output="/home/todd/work/Developer/C++/coreutils-cpp/build/ptx" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/todd/work/Developer/C++/coreutils-cpp/src/include"/>
+					<Add directory="/usr/local/include/docopt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 ptx"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ptx/fast">
+				<Option output="/home/todd/work/Developer/C++/coreutils-cpp/build/ptx" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/todd/work/Developer/C++/coreutils-cpp/src/include"/>
+					<Add directory="/usr/local/include/docopt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 ptx/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="printenv">
+				<Option output="/home/todd/work/Developer/C++/coreutils-cpp/build/printenv" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/todd/work/Developer/C++/coreutils-cpp/src/include"/>
+					<Add directory="/usr/local/include/docopt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 printenv"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="printenv/fast">
+				<Option output="/home/todd/work/Developer/C++/coreutils-cpp/build/printenv" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/todd/work/Developer/C++/coreutils-cpp/src/include"/>
+					<Add directory="/usr/local/include/docopt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 printenv/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 			<Target title="pathchk">
 				<Option output="/home/todd/work/Developer/C++/coreutils-cpp/build/pathchk" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="build"/>
@@ -124,6 +260,40 @@
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 paste/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="printf">
+				<Option output="/home/todd/work/Developer/C++/coreutils-cpp/build/printf" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/todd/work/Developer/C++/coreutils-cpp/src/include"/>
+					<Add directory="/usr/local/include/docopt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 printf"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="printf/fast">
+				<Option output="/home/todd/work/Developer/C++/coreutils-cpp/build/printf" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/todd/work/Developer/C++/coreutils-cpp/src/include"/>
+					<Add directory="/usr/local/include/docopt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 printf/fast"/>
 					<CompileFile command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
@@ -916,6 +1086,40 @@
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 cat/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="pwd">
+				<Option output="/home/todd/work/Developer/C++/coreutils-cpp/build/pwd" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/todd/work/Developer/C++/coreutils-cpp/src/include"/>
+					<Add directory="/usr/local/include/docopt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 pwd"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="pwd/fast">
+				<Option output="/home/todd/work/Developer/C++/coreutils-cpp/build/pwd" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/todd/work/Developer/C++/coreutils-cpp/src/include"/>
+					<Add directory="/usr/local/include/docopt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 pwd/fast"/>
 					<CompileFile command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -f &quot;/home/todd/work/Developer/C++/coreutils-cpp/Makefile&quot;  VERBOSE=1 clean"/>
@@ -2148,8 +2352,13 @@
 		</Unit>
 		<Unit filename="/home/todd/work/Developer/C++/coreutils-cpp/src/include/globals.h">
 			<Option target="true"/>
+			<Option target="realpath"/>
+			<Option target="readlink"/>
+			<Option target="ptx"/>
+			<Option target="printenv"/>
 			<Option target="pathchk"/>
 			<Option target="paste"/>
+			<Option target="printf"/>
 			<Option target="nproc"/>
 			<Option target="nice"/>
 			<Option target="mktemp"/>
@@ -2173,6 +2382,7 @@
 			<Option target="dirname"/>
 			<Option target="cp"/>
 			<Option target="cat"/>
+			<Option target="pwd"/>
 			<Option target="cksum"/>
 			<Option target="chcon"/>
 			<Option target="cut"/>
@@ -2275,6 +2485,24 @@
 		</Unit>
 		<Unit filename="/home/todd/work/Developer/C++/coreutils-cpp/src/pr.cpp">
 			<Option target="pr"/>
+		</Unit>
+		<Unit filename="/home/todd/work/Developer/C++/coreutils-cpp/src/printenv.cpp">
+			<Option target="printenv"/>
+		</Unit>
+		<Unit filename="/home/todd/work/Developer/C++/coreutils-cpp/src/printf.cpp">
+			<Option target="printf"/>
+		</Unit>
+		<Unit filename="/home/todd/work/Developer/C++/coreutils-cpp/src/ptx.cpp">
+			<Option target="ptx"/>
+		</Unit>
+		<Unit filename="/home/todd/work/Developer/C++/coreutils-cpp/src/pwd.cpp">
+			<Option target="pwd"/>
+		</Unit>
+		<Unit filename="/home/todd/work/Developer/C++/coreutils-cpp/src/readlink.cpp">
+			<Option target="readlink"/>
+		</Unit>
+		<Unit filename="/home/todd/work/Developer/C++/coreutils-cpp/src/realpath.cpp">
+			<Option target="realpath"/>
 		</Unit>
 		<Unit filename="/home/todd/work/Developer/C++/coreutils-cpp/src/touch.cpp">
 			<Option target="touch"/>
