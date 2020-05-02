@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.15)
 
 project(coreutils_cpp LANGUAGES CXX)
 
+if(POLICY CMP0037)
+    cmake_policy(SET CMP0037 OLD)
+endif()
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY build)
 
@@ -120,3 +123,188 @@ add_executable(dirname
         src/include/globals.h
         src/dirname.cpp)
 target_link_libraries(dirname docopt)
+
+add_executable(du
+        src/include/globals.h
+        src/du.cpp)
+target_link_libraries(du docopt)
+
+add_executable(env
+        src/include/globals.h
+        src/env.cpp)
+target_link_libraries(env docopt)
+
+add_executable(expand
+        src/include/globals.h
+        src/expand.cpp)
+target_link_libraries(expand docopt)
+
+add_executable(expr
+        src/include/globals.h
+        src/expr.cpp)
+target_link_libraries(expr docopt)
+
+add_executable(factor
+        src/include/globals.h
+        src/factor.cpp)
+target_link_libraries(factor docopt)
+
+add_executable(false
+        src/include/globals.h
+        src/false.cpp)
+target_link_libraries(false docopt)
+
+add_executable(fmt
+        src/include/globals.h
+        src/fmt.cpp)
+target_link_libraries(fmt docopt)
+
+add_executable(fold
+        src/include/globals.h
+        src/fold.cpp)
+target_link_libraries(fold docopt)
+
+add_executable(groups
+        src/include/globals.h
+        src/groups.cpp)
+target_link_libraries(groups docopt)
+
+add_executable(head
+        src/include/globals.h
+        src/head.cpp)
+target_link_libraries(head docopt)
+
+add_executable(hostid
+        src/include/globals.h
+        src/hostid.cpp)
+target_link_libraries(hostid docopt)
+
+add_executable(hostname
+        src/include/globals.h
+        src/hostname.cpp)
+target_link_libraries(hostname docopt)
+
+add_executable(id
+        src/include/globals.h
+        src/id.cpp)
+target_link_libraries(id docopt)
+
+add_executable(install
+        src/include/globals.h
+        src/install.cpp)
+target_link_libraries(install docopt)
+
+add_executable(join
+        src/include/globals.h
+        src/join.cpp)
+target_link_libraries(join docopt)
+
+add_executable(kill
+        src/include/globals.h
+        src/kill.cpp)
+target_link_libraries(kill docopt)
+
+add_executable(link
+        src/include/globals.h
+        src/link.cpp)
+target_link_libraries(link docopt)
+
+add_executable(ln
+        src/include/globals.h
+        src/ln.cpp)
+target_link_libraries(ln docopt)
+
+add_executable(logname
+        src/include/globals.h
+        src/logname.cpp)
+target_link_libraries(logname docopt)
+
+add_executable(ls
+        src/include/globals.h
+        src/ls.cpp)
+target_link_libraries(ls docopt)
+
+add_executable(md5sum
+        src/include/globals.h
+        src/md5sum.cpp)
+target_link_libraries(md5sum docopt)
+
+add_executable(mkdir
+        src/include/globals.h
+        src/mkdir.cpp)
+target_link_libraries(mkdir docopt)
+
+add_executable(mkfifo
+        src/include/globals.h
+        src/mkfifo.cpp)
+target_link_libraries(mkfifo docopt)
+
+add_executable(mknod
+        src/include/globals.h
+        src/mknod.cpp)
+target_link_libraries(mknod docopt)
+
+add_executable(mktemp
+        src/include/globals.h
+        src/mktemp.cpp)
+target_link_libraries(mktemp docopt)
+
+add_executable(mv
+        src/include/globals.h
+        src/mv.cpp)
+target_link_libraries(mv docopt)
+
+add_executable(nice
+        src/include/globals.h
+        src/nice.cpp)
+target_link_libraries(nice docopt)
+
+add_executable(nl
+        src/include/globals.h
+        src/nl.cpp)
+target_link_libraries(nl docopt)
+
+add_executable(nohup
+        src/include/globals.h
+        src/nohup.cpp)
+target_link_libraries(nohup docopt)
+
+add_executable(nproc
+        src/include/globals.h
+        src/nproc.cpp)
+target_link_libraries(nproc docopt)
+
+add_executable(numfmt
+        src/include/globals.h
+        src/numfmt.cpp)
+target_link_libraries(numfmt docopt)
+
+add_executable(od
+        src/include/globals.h
+        src/od.cpp)
+target_link_libraries(od docopt)
+
+add_executable(paste
+        src/include/globals.h
+        src/paste.cpp)
+target_link_libraries(paste docopt)
+
+add_executable(pathchk
+        src/include/globals.h
+        src/pathchk.cpp)
+target_link_libraries(pathchk docopt)
+
+add_executable(pinky
+        src/include/globals.h
+        src/pinky.cpp)
+target_link_libraries(pinky docopt)
+
+add_executable(pr
+        src/include/globals.h
+        src/pr.cpp)
+target_link_libraries(pr docopt)
+
+add_executable(true
+        src/include/globals.h
+        src/true.cpp)
+target_link_libraries(true docopt)

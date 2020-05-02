@@ -1,4 +1,5 @@
-/** .cpp, migrated from .c from coreutils
+/** paste.cpp, migrated from paste.c from coreutils
+ * paste - merge lines of files
  * Copyright (C) 1987-2020 Free Software Foundation, Inc.
  * Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
  *
@@ -16,6 +17,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Original Authors:
+ * David M. Ihnat
+ * David MacKenzie
  *
  * C++ Code migration:
  * Todd Saharchuk <tsaharchuk1@athabasca.edu> @northerntechie
@@ -30,23 +33,25 @@
 // End of C++ includes
 
 /* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME
+#define PROGRAM_NAME paste
 
 #define VERSION F_VERSION(PROGRAM_NAME)
 
 constexpr auto USAGE =
-R"(<prog>.
+R"(paste.
 
      Usage:
-       <prog> [options] POS_ARGS...
+       paste [options] FILES...
 
+       Write lines consisting of the sequentially corresponding lines from
+         each FILE, separated by TABs, to standard output.
 
      Options:
        -h --help              Show this screen
        --version              Show version
-
-     Examples:
-
+       -d, --delimiters=LIST  Reuse characters from LIST instead of TABs
+       -s, --serial           Paste one file at a time instead of in parallel
+       -z, --zero-terminated  Line delimiter is NUL, not newline
 )";
 
 int main(int argc, char** argv)

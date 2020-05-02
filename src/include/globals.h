@@ -21,6 +21,7 @@
 #define __GLOBALS_H__
 
 #include <string>
+#include <sstream>
 
 
 /**
@@ -35,21 +36,12 @@ namespace cc
 constexpr auto ERR_BAD_OPTION = "Error: Bad or missing option!";
 
 /* Version info */
-constexpr auto MAJOR_VER = 0;  // Development = 0
-constexpr auto MINOR_VER = 1;
-constexpr auto PATCH_VER = 0;
-
-template<typename T>
-constexpr auto stringify(T args...)
-{
-  return std::string_view(args);
-}
-
-constexpr auto versionString(const std::string_view prog)
-{
-  return stringify(prog, " (cpp) ", MAJOR_VER,
-      ".", MINOR_VER, ".", PATCH_VER);
-}
+#define MAJOR_VER 0
+#define MINOR_VER 1
+#define PATCH_VER 0
+#define STRINGIFY(x) #x
+#define _VERSION(PR,MA,MN,PA) ( STRINGIFY(PR) " (cpp) " STRINGIFY(MA) "." STRINGIFY(MN) "." STRINGIFY(PA) )
+#define F_VERSION(PR) ( _VERSION(PR,MAJOR_VER,MINOR_VER,PATCH_VER) )
 
 } /* End of namespace cc */
 #endif

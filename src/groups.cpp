@@ -1,4 +1,5 @@
-/** .cpp, migrated from .c from coreutils
+/** groups.cpp, migrated from groups.c from coreutils
+ * groups -- print the groups a user is in
  * Copyright (C) 1987-2020 Free Software Foundation, Inc.
  * Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
  *
@@ -16,6 +17,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Original Authors:
+ * David MacKenzie
+ * James Youngman
  *
  * C++ Code migration:
  * Todd Saharchuk <tsaharchuk1@athabasca.edu> @northerntechie
@@ -30,23 +33,22 @@
 // End of C++ includes
 
 /* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME
+#define PROGRAM_NAME groups
 
 #define VERSION F_VERSION(PROGRAM_NAME)
 
 constexpr auto USAGE =
-R"(<prog>.
+R"(groups.
 
      Usage:
-       <prog> [options] POS_ARGS...
+       groups [options] [USERNAME...]
 
+       Print group memberships for each USERNAME or, if no USERNAME is specified, for
+         the current process (which may differ if the groups database has changed).
 
      Options:
        -h --help              Show this screen
        --version              Show version
-
-     Examples:
-
 )";
 
 int main(int argc, char** argv)

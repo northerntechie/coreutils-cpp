@@ -1,4 +1,4 @@
-/** .cpp, migrated from .c from coreutils
+/** factor.cpp, migrated from factor.c from coreutils
  * Copyright (C) 1987-2020 Free Software Foundation, Inc.
  * Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
  *
@@ -16,6 +16,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Original Authors:
+ * Paul Rubin
+ * Torbjorn Granlund
+ * Niels Moller
  *
  * C++ Code migration:
  * Todd Saharchuk <tsaharchuk1@athabasca.edu> @northerntechie
@@ -30,40 +33,38 @@
 // End of C++ includes
 
 /* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME
+#define PROGRAM_NAME factor
 
 #define VERSION F_VERSION(PROGRAM_NAME)
 
 constexpr auto USAGE =
-R"(<prog>.
+R"(factor.
 
      Usage:
-       <prog> [options] POS_ARGS...
+       factor [options]
+       factor [NUMBER...]
 
+       Print the prime factors of each specified integer NUMBER.  If none
+         are specified on the command line, read them from standard input.
 
      Options:
        -h --help              Show this screen
        --version              Show version
-
-     Examples:
-
 )";
 
 int main(int argc, char** argv)
 {
-  std::map<std::string, docopt::value> args =
-      docopt::docopt (USAGE,
-                      {argv + 1, argv + argc},
-                      true,
-                      VERSION);
+    std::map<std::string, docopt::value> args =
+        docopt::docopt(USAGE,
+                       {argv+1, argv+argc},
+                        true,
+                        VERSION);
 
-  // TODO(@northerntechie): Finish implementation
-  for (auto kv : args)
+    // TODO(@northerntechie): Finish implementation
+    for(auto kv : args)
     {
-      std::cout << kv.first << " : " << kv.second << "\n";
+        std::cout << kv.first << " : " << kv.second << "\n";
     }
 
-  std::cout << "Implementation incomplete! Do not use!\n";
-
-  return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }

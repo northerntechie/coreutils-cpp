@@ -1,4 +1,5 @@
-/** .cpp, migrated from .c from coreutils
+/** kill.cpp, migrated from kill.c from coreutils
+ * kill -- send a signal to a process
  * Copyright (C) 1987-2020 Free Software Foundation, Inc.
  * Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
  *
@@ -16,6 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Original Authors:
+ * Paul Eggert
  *
  * C++ Code migration:
  * Todd Saharchuk <tsaharchuk1@athabasca.edu> @northerntechie
@@ -30,23 +32,32 @@
 // End of C++ includes
 
 /* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME
+#define PROGRAM_NAME kill
 
 #define VERSION F_VERSION(PROGRAM_NAME)
 
 constexpr auto USAGE =
-R"(<prog>.
+R"(kill.
 
      Usage:
-       <prog> [options] POS_ARGS...
+       kill [ -s SIGNAL | -SIGNAL ] PID...
+       kill -l SIGNALS...
+       kill -t SIGNALS...
 
+       Send signals to processes, or list signals.
 
      Options:
-       -h --help              Show this screen
-       --version              Show version
+       -h --help                     Show this screen
+       --version                     Show version
+       -s, --signal=SIGNAL, -SIGNAL  Specify the name or number of the signal to be sent
+       -l, --list                    List signal names, or convert signal names to/from numbers
+       -t, --table                   Print a table of signal information
 
-     Examples:
+     Note:
 
+       SIGNAL may be a signal name like 'HUP', or a signal number like '1',
+         or the exit status of a process terminated by a signal.
+         PID is an integer; if negative it identifies a process group.
 )";
 
 int main(int argc, char** argv)

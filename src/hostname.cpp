@@ -1,4 +1,5 @@
-/** .cpp, migrated from .c from coreutils
+/** hostname.cpp, migrated from hostname.c from coreutils
+ * hostname - set or print the name of current host system
  * Copyright (C) 1987-2020 Free Software Foundation, Inc.
  * Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
  *
@@ -16,6 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Original Authors:
+ * Jim Meyering
  *
  * C++ Code migration:
  * Todd Saharchuk <tsaharchuk1@athabasca.edu> @northerntechie
@@ -30,23 +32,21 @@
 // End of C++ includes
 
 /* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME
+#define PROGRAM_NAME hostname
 
 #define VERSION F_VERSION(PROGRAM_NAME)
 
 constexpr auto USAGE =
-R"(<prog>.
+R"(hostname.
 
      Usage:
-       <prog> [options] POS_ARGS...
+       hostname [options] NAME
 
+       Print or set the hostname of the current system.
 
      Options:
        -h --help              Show this screen
        --version              Show version
-
-     Examples:
-
 )";
 
 int main(int argc, char** argv)

@@ -1,4 +1,5 @@
-/** .cpp, migrated from .c from coreutils
+/** nice.cpp, migrated from nice.c from coreutils
+ * nice -- run a program with modified niceness
  * Copyright (C) 1987-2020 Free Software Foundation, Inc.
  * Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
  *
@@ -16,6 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Original Authors:
+ * David MacKenzie <djm@gnu.ai.mit.edu>
  *
  * C++ Code migration:
  * Todd Saharchuk <tsaharchuk1@athabasca.edu> @northerntechie
@@ -30,23 +32,24 @@
 // End of C++ includes
 
 /* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME
+#define PROGRAM_NAME nice
 
 #define VERSION F_VERSION(PROGRAM_NAME)
 
 constexpr auto USAGE =
-R"(<prog>.
+R"(nice.
 
      Usage:
-       <prog> [options] POS_ARGS...
+       nice [options] [ COMMAND [ ARGS... ] ]
 
+       Run COMMAND with an adjusted niceness, which affects process scheduling.
+         With no COMMAND, print the current niceness.  Niceness values range from
+         -XX (most favorable to the process) to XX (least favorable to the process).
 
      Options:
        -h --help              Show this screen
        --version              Show version
-
-     Examples:
-
+       -n, --adjustment=N     Add integer N to the niceness (default 10)
 )";
 
 int main(int argc, char** argv)

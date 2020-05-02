@@ -1,4 +1,5 @@
-/** .cpp, migrated from .c from coreutils
+/** id.cpp, migrated from id.c from coreutils
+ * id -- print real and effective UIDs and GIDs
  * Copyright (C) 1987-2020 Free Software Foundation, Inc.
  * Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
  *
@@ -16,6 +17,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Original Authors:
+ * Arnold Robbins
+ * David MacKenzie <djm@gnu.ai.mit.edu>
  *
  * C++ Code migration:
  * Todd Saharchuk <tsaharchuk1@athabasca.edu> @northerntechie
@@ -30,23 +33,35 @@
 // End of C++ includes
 
 /* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME
+#define PROGRAM_NAME id
 
 #define VERSION F_VERSION(PROGRAM_NAME)
 
 constexpr auto USAGE =
-R"(<prog>.
+R"(id.
 
      Usage:
-       <prog> [options] POS_ARGS...
+       id [options] [USER...]
 
+       Print user and group information for each specified USER,
+         or (when USER omitted) for the current user.
 
      Options:
        -h --help              Show this screen
        --version              Show version
+       -a                     Ignore, for compatibility with other versions
+       -Z, --context          Print only the security context of the process
+       -g, --group            Print only the effective group ID
+       -G, --groups           Print all group IDs
+       -n, --name             Print a name instead of a number, for -ugG
+       -r, --real             Print the real ID instead of the effective ID, with -ugG
+       -u, --user             Print only the effective user ID
+       -z, --zero             Delimit entries with NUL characters, not whitespace;
+                                not permitted in default format
 
-     Examples:
+     Note:
 
+       Without any OPTION, print some useful set of identified information.
 )";
 
 int main(int argc, char** argv)

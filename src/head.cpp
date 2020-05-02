@@ -1,4 +1,5 @@
-/** .cpp, migrated from .c from coreutils
+/** head.cpp, migrated from head.c from coreutils
+ * head -- output first part of file(s)
  * Copyright (C) 1987-2020 Free Software Foundation, Inc.
  * Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
  *
@@ -16,6 +17,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Original Authors:
+ * David MacKenzie
+ * Jim Meyering
  *
  * C++ Code migration:
  * Todd Saharchuk <tsaharchuk1@athabasca.edu> @northerntechie
@@ -30,23 +33,38 @@
 // End of C++ includes
 
 /* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME
+#define PROGRAM_NAME head
 
 #define VERSION F_VERSION(PROGRAM_NAME)
 
 constexpr auto USAGE =
-R"(<prog>.
+R"(head.
 
      Usage:
-       <prog> [options] POS_ARGS...
+       head [options] [FILE...]
 
+       Print the first %d lines of each FILE to standard output.
+         With more than one FILE, precede each with a header giving the file name.
 
      Options:
        -h --help              Show this screen
        --version              Show version
+       -c, --bytes=[-]NUM     Print the first NUM bytes of each file;
+                                with the leading '-', print all but the last
+                                NUM bytes of each file
+       -n, --lines=[-]NUM     Print the first NUM lines instead of the first %d;
+                                with the leading '-', print all but the last
+                                NUM lines of each file
+       -q, --quiet, --silent  Never print headers giving file names
+       -v, --verbose          Always print headers giving file names
+       -z, --zero-terminated  Line delimiter is NUL, not newline
 
-     Examples:
+     Notes:
 
+       NUM may have a multiplier suffix:
+         b 512, kB 1000, K 1024, MB 1000*1000, M 1024*1024,
+         GB 1000*1000*1000, G 1024*1024*1024, and so on for T, P, E, Z, Y.
+         Binary prefixes can be used, too: KiB=K, MiB=M, and so on.
 )";
 
 int main(int argc, char** argv)

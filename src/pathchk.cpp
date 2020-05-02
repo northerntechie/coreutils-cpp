@@ -1,4 +1,5 @@
-/** .cpp, migrated from .c from coreutils
+/** pathchk.cpp, migrated from pathchk.c from coreutils
+ * pathchk -- check whether file names are valid or portable
  * Copyright (C) 1987-2020 Free Software Foundation, Inc.
  * Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
  *
@@ -16,6 +17,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Original Authors:
+ * Paul Eggert
+ * David MacKenzie
+ * Jim Meyering
  *
  * C++ Code migration:
  * Todd Saharchuk <tsaharchuk1@athabasca.edu> @northerntechie
@@ -30,23 +34,24 @@
 // End of C++ includes
 
 /* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME
+#define PROGRAM_NAME pathchk
 
 #define VERSION F_VERSION(PROGRAM_NAME)
 
 constexpr auto USAGE =
-R"(<prog>.
+R"(pathchk.
 
      Usage:
-       <prog> [options] POS_ARGS...
+       pathchk [options] NAME...
 
+       Diagnose invalid or unportable file names.
 
      Options:
        -h --help              Show this screen
        --version              Show version
-
-     Examples:
-
+       -p                     Check for most POSIX systems
+       -P                     Check for empty names and leading \"-\"
+       --portability          Check for all POSIX systems (equivalent to -p -P)
 )";
 
 int main(int argc, char** argv)

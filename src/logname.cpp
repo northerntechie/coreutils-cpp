@@ -1,4 +1,5 @@
-/** .cpp, migrated from .c from coreutils
+/** logname.cpp, migrated from logname.c from coreutils
+ * logname -- print user's login name
  * Copyright (C) 1987-2020 Free Software Foundation, Inc.
  * Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
  *
@@ -30,23 +31,21 @@
 // End of C++ includes
 
 /* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME
+#define PROGRAM_NAME logname
 
 #define VERSION F_VERSION(PROGRAM_NAME)
 
 constexpr auto USAGE =
-R"(<prog>.
+R"(logname.
 
      Usage:
-       <prog> [options] POS_ARGS...
+       logname [options]
 
+       Print the name of the current user.
 
      Options:
        -h --help              Show this screen
        --version              Show version
-
-     Examples:
-
 )";
 
 int main(int argc, char** argv)

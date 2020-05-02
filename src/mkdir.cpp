@@ -1,4 +1,5 @@
-/** .cpp, migrated from .c from coreutils
+/** mkdir.cpp, migrated from mkdir.c from coreutils
+ * mkdir -- make directories
  * Copyright (C) 1987-2020 Free Software Foundation, Inc.
  * Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
  *
@@ -16,6 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Original Authors:
+ * David MacKenzie <djm@ai.mit.edu>
  *
  * C++ Code migration:
  * Todd Saharchuk <tsaharchuk1@athabasca.edu> @northerntechie
@@ -30,23 +32,28 @@
 // End of C++ includes
 
 /* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME
+#define PROGRAM_NAME mkdir
 
 #define VERSION F_VERSION(PROGRAM_NAME)
 
 constexpr auto USAGE =
-R"(<prog>.
+R"(mkdir.
 
      Usage:
-       <prog> [options] POS_ARGS...
+       mkdir [options] [ DIRECTORY | DIRECTORIES... ]
 
+       Create the DIRECTORY(ies), if they do not already exist.
 
      Options:
        -h --help              Show this screen
        --version              Show version
-
-     Examples:
-
+       -m, --mode=MODE        Set file mode (as in chmod), not a=rwx - umask
+       -p, --parents          No error if existing, make parent directories as needed
+       -v, --verbose          Print a message for each created directory
+       -Z                     Set SELinux security context of each created directory
+                                to the default type
+       --context[=CTX]        Like -Z, or if CTX is specified then set the SELinux
+                                or SMACK security context to CTX
 )";
 
 int main(int argc, char** argv)

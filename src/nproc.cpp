@@ -1,4 +1,5 @@
-/** .cpp, migrated from .c from coreutils
+/** nproc.cpp, migrated from nproc.c from coreutils
+ * nproc - print the number of processors.
  * Copyright (C) 1987-2020 Free Software Foundation, Inc.
  * Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
  *
@@ -16,6 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Original Authors:
+ * Giuseppe Scrivano
  *
  * C++ Code migration:
  * Todd Saharchuk <tsaharchuk1@athabasca.edu> @northerntechie
@@ -30,23 +32,24 @@
 // End of C++ includes
 
 /* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME
+#define PROGRAM_NAME nproc
 
 #define VERSION F_VERSION(PROGRAM_NAME)
 
 constexpr auto USAGE =
-R"(<prog>.
+R"(nproc.
 
      Usage:
-       <prog> [options] POS_ARGS...
+       nproc [options]
 
+       Print the number of processing units available to the current process,
+         which may be less than the number of online processors
 
      Options:
        -h --help              Show this screen
        --version              Show version
-
-     Examples:
-
+       --all                  Print the number of installed processors
+       --ignore=N             If possible, exclude N processing units
 )";
 
 int main(int argc, char** argv)

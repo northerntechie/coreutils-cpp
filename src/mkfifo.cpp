@@ -1,4 +1,5 @@
-/** .cpp, migrated from .c from coreutils
+/** mkfifo.cpp, migrated from mkfifo.c from coreutils
+ * mkfifo -- make fifo's (named pipes)
  * Copyright (C) 1987-2020 Free Software Foundation, Inc.
  * Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
  *
@@ -16,6 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Original Authors:
+ * David MacKenzie <djm@ai.mit.edu>
  *
  * C++ Code migration:
  * Todd Saharchuk <tsaharchuk1@athabasca.edu> @northerntechie
@@ -30,23 +32,25 @@
 // End of C++ includes
 
 /* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME
+#define PROGRAM_NAME mkfifo
 
 #define VERSION F_VERSION(PROGRAM_NAME)
 
 constexpr auto USAGE =
-R"(<prog>.
+R"(mkfifo.
 
      Usage:
-       <prog> [options] POS_ARGS...
+       mkfifo [options] NAMES...
 
+       Create named pipes (FIFOs) with the given NAMEs.
 
      Options:
        -h --help              Show this screen
        --version              Show version
-
-     Examples:
-
+       -m, --mode=MODE        Set file permission bits to MODE, not a=rw - umask
+       -Z                     Set the SELinux security context to default type
+       --context[=CTX]        Like -Z, or if CTX is specified then set the SELinux
+                                or SMACK security context to CTX
 )";
 
 int main(int argc, char** argv)

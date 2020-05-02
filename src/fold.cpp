@@ -1,4 +1,5 @@
-/** .cpp, migrated from .c from coreutils
+/** fold.cpp, migrated from fold.c from coreutils
+ * fold -- wrap each input line to fit in specified width.
  * Copyright (C) 1987-2020 Free Software Foundation, Inc.
  * Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
  *
@@ -16,6 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Original Authors:
+ * David MacKenzie
  *
  * C++ Code migration:
  * Todd Saharchuk <tsaharchuk1@athabasca.edu> @northerntechie
@@ -30,40 +32,40 @@
 // End of C++ includes
 
 /* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME
+#define PROGRAM_NAME fold
 
 #define VERSION F_VERSION(PROGRAM_NAME)
 
 constexpr auto USAGE =
-R"(<prog>.
+R"(fold.
 
      Usage:
-       <prog> [options] POS_ARGS...
+       fold [options] [FILE...]
 
+       Wrap input lines in each FILE, writing to standard output.
 
      Options:
        -h --help              Show this screen
        --version              Show version
-
-     Examples:
-
+       -b, --bytes            Count bytes rather than columns
+       -s, --spaces           Break at spaces
+       -w, --width=WIDTH      Use WIDTH columns instead of 80
 )";
 
 int main(int argc, char** argv)
 {
-  std::map<std::string, docopt::value> args =
-      docopt::docopt (USAGE,
-                      {argv + 1, argv + argc},
-                      true,
-                      VERSION);
+    std::map<std::string, docopt::value> args =
+        docopt::docopt(USAGE,
+                       {argv+1, argv+argc},
+                        true,
+                        VERSION);
 
-  // TODO(@northerntechie): Finish implementation
-  for (auto kv : args)
+    // TODO(@northerntechie): Finish implementation
+    for(auto kv : args)
     {
-      std::cout << kv.first << " : " << kv.second << "\n";
+        std::cout << kv.first << " : " << kv.second << "\n";
     }
+    std::cout << "Implementation incomplete! Do not use!\n";
 
-  std::cout << "Implementation incomplete! Do not use!\n";
-
-  return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }

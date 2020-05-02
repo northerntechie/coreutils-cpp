@@ -1,4 +1,5 @@
-/** .cpp, migrated from .c from coreutils
+/** nohup.cpp, migrated from nohup.c from coreutils
+ * nohup -- run a command immune to hangups, with output to a non-tty
  * Copyright (C) 1987-2020 Free Software Foundation, Inc.
  * Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
  *
@@ -16,6 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Original Authors:
+ * Jim Meyering
  *
  * C++ Code migration:
  * Todd Saharchuk <tsaharchuk1@athabasca.edu> @northerntechie
@@ -30,23 +32,30 @@
 // End of C++ includes
 
 /* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME
+#define PROGRAM_NAME nohup
 
 #define VERSION F_VERSION(PROGRAM_NAME)
 
 constexpr auto USAGE =
-R"(<prog>.
+R"(nohup.
 
      Usage:
-       <prog> [options] POS_ARGS...
+       nohup Command [ ARGS... ]
+       nohup [options]
 
+       Run COMMAND, ignoring hangup signals.
 
      Options:
        -h --help              Show this screen
        --version              Show version
 
-     Examples:
+     Note:
 
+       If standard input is a terminal, redirect it from an unreadable file.
+         If standard output is a terminal, append output to 'nohup.out' if possible,
+         '$HOME/nohup.out' otherwise.
+         If standard error is a terminal, redirect it to standard output.
+         To save output to FILE, use '%s COMMAND > FILE'.
 )";
 
 int main(int argc, char** argv)

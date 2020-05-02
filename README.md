@@ -14,19 +14,22 @@ finish implementations.  PR's are welcome.
 
 The programs that can be built with this package are:
 
-  b2sum echo touch basename basenc cat chcon chgrp chmod  chown chroot 
-  cksum comm coreutils cp csplit cut date dd df dircolors 
+  b2sum echo touch basename basenc cat chcon chgrp chmod chown chroot 
+  cksum comm coreutils cp csplit cut date dd df dircolors dirname du 
+  env expand expr factor false fmt fold groups head hostid hostname
+  id install join kill link ln logname ls md5sum mkdir mkfifo mknod 
+  mktemp mv nice nl nohup nproc numfmt od paste pathchk pinky pr 
+
+  true 
   
 Future:
 
-  arch base32 base64
-  dir dirname
-  du env expand expr factor false fmt fold groups head hostid hostname
-  id install join kill link ln logname ls md5sum mkdir mkfifo mknod mktemp
-  mv nice nl nohup nproc numfmt od paste pathchk pinky pr printenv printf ptx
+  arch base32 base64 dir 
+  
+  printenv printf ptx
   pwd readlink realpath rm rmdir runcon seq sha1sum sha224sum sha256sum
   sha384sum sha512sum shred shuf sleep sort split stat stdbuf stty sum sync
-  tac tail tee test timeout tr true truncate tsort tty uname unexpand
+  tac tail tee test timeout tr truncate tsort tty uname unexpand
   uniq unlink uptime users vdir wc who whoami yes
 
 Unlike the rest of the GNU system, these programs do not conform to

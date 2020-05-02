@@ -1,4 +1,5 @@
-/** .cpp, migrated from .c from coreutils
+/** mknod.cpp, migrated from mknod.c from coreutils
+ * mknod -- make special files
  * Copyright (C) 1987-2020 Free Software Foundation, Inc.
  * Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
  *
@@ -16,6 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Original Authors:
+ * David MacKenzie <djm@ai.mit.edu>
  *
  * C++ Code migration:
  * Todd Saharchuk <tsaharchuk1@athabasca.edu> @northerntechie
@@ -30,23 +32,36 @@
 // End of C++ includes
 
 /* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME
+#define PROGRAM_NAME mknod
 
 #define VERSION F_VERSION(PROGRAM_NAME)
 
 constexpr auto USAGE =
-R"(<prog>.
+R"(mknod.
 
      Usage:
-       <prog> [options] POS_ARGS...
+       mknod [options] NAME TYPE [ MAJOR MINOR ]
 
+       Create the special file NAME of the given TYPE.
 
      Options:
        -h --help              Show this screen
        --version              Show version
+       -m, --mode=MODE        Set file permission bits to MODE, not a=rw - umask
+       -Z                     Set the SELinux security context to default type
+       --context[=CTX]        Like -Z, or if CTX is specified then set the SELinux
+                                or SMACK security context to CTX
 
-     Examples:
+     Note:
 
+       Both MAJOR and MINOR must be specified when TYPE is b, c, or u, and they
+         must be omitted when TYPE is p.  If MAJOR or MINOR begins with 0x or 0X,
+         it is interpreted as hexadecimal; otherwise, if it begins with 0, as octal;
+         otherwise, as decimal.  TYPE may be:
+
+         b      create a block (buffered) special file
+         c, u   create a character (unbuffered) special file
+         p      create a FIFO
 )";
 
 int main(int argc, char** argv)
