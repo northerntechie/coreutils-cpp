@@ -1,3 +1,5 @@
+# Coreutils-CPP - A modern C++ interpretation of the GNU coreutils library
+
 These are some of the GNU core utilities migrated to C++ code through a 
 complete rewrite using modern C++ conventions and techniques.  This package
 is the union of the GNU fileutils, sh-utils, and textutils packages.
@@ -19,19 +21,16 @@ The programs that can be built with this package are:
   env expand expr factor false fmt fold groups head hostid hostname
   id install join kill link ln logname ls md5sum mkdir mkfifo mknod 
   mktemp mv nice nl nohup nproc numfmt od paste pathchk pinky pr 
-  printenv printf ptx pwd readlink 
-  
-  true 
+  printenv printf ptx pwd readlink realpath rm rmdir runcon seq shred 
+  shuf sleep sort split stat stdbuf stty sum sync tac tail tee test 
+  timeout tr true truncate tsort tty uname unexpand uniq unlink uptime
+  users wc who whoami yes
   
 Future:
 
-  arch base32 base64 dir 
+  arch base32 base64 dir sha1sum sha224sum sha256sum sha384sum sha512sum
+  vdir  
   
-  realpath rm rmdir runcon seq sha1sum sha224sum sha256sum
-  sha384sum sha512sum shred shuf sleep sort split stat stdbuf stty sum sync
-  tac tail tee test timeout tr truncate tsort tty uname unexpand
-  uniq unlink uptime users vdir wc who whoami yes
-
 Unlike the rest of the GNU system, these programs do not conform to
 POSIX, with BSD and other extensions.  For closer conformance, choose another 
 library.

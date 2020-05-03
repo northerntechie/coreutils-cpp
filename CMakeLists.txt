@@ -337,9 +337,172 @@ add_executable(realpath
         src/realpath.cpp)
 target_link_libraries(realpath docopt)
 
+add_executable(rm
+        src/include/globals.h
+        src/rm.cpp)
+target_link_libraries(rm docopt)
 
+add_executable(rmdir
+        src/include/globals.h
+        src/rmdir.cpp)
+target_link_libraries(rmdir docopt)
+
+add_executable(runcon
+        src/include/globals.h
+        src/runcon.cpp)
+target_link_libraries(runcon docopt)
+
+add_executable(seq
+        src/include/globals.h
+        src/seq.cpp)
+target_link_libraries(seq docopt)
+
+add_executable(shred
+        src/include/globals.h
+        src/shred.cpp)
+target_link_libraries(shred docopt)
+
+add_executable(shuf
+        src/include/globals.h
+        src/shuf.cpp)
+target_link_libraries(shuf docopt)
+
+add_executable(sleep
+        src/include/globals.h
+        src/sleep.cpp)
+target_link_libraries(sleep docopt)
+
+add_executable(sort
+        src/include/globals.h
+        src/sort.cpp)
+target_link_libraries(sort docopt)
+
+add_executable(split
+        src/include/globals.h
+        src/split.cpp)
+target_link_libraries(split docopt)
+
+add_executable(stat
+        src/include/globals.h
+        src/stat.cpp)
+target_link_libraries(stat docopt)
+
+add_executable(stdbuf
+        src/include/globals.h
+        src/stdbuf.cpp)
+target_link_libraries(stdbuf docopt)
+
+add_executable(stty
+        src/include/globals.h
+        src/stty.cpp)
+target_link_libraries(stty docopt)
+
+add_executable(sum
+        src/include/globals.h
+        src/sum.cpp)
+target_link_libraries(sum docopt)
+
+add_executable(sync
+        src/include/globals.h
+        src/sync.cpp)
+target_link_libraries(sync docopt)
+
+add_executable(tac
+        src/include/globals.h
+        src/tac.cpp)
+target_link_libraries(tac docopt)
+
+add_executable(tail
+        src/include/globals.h
+        src/tail.cpp)
+target_link_libraries(tail docopt)
+
+add_executable(tee
+        src/include/globals.h
+        src/tee.cpp)
+target_link_libraries(tee docopt)
+
+add_executable(test
+        src/include/globals.h
+        src/test.cpp)
+target_link_libraries(test docopt)
+
+add_executable(timeout
+        src/include/globals.h
+        src/timeout.cpp)
+target_link_libraries(timeout docopt)
+
+add_executable(tr
+        src/include/globals.h
+        src/tr.cpp)
+target_link_libraries(tr docopt)
 
 add_executable(true
         src/include/globals.h
         src/true.cpp)
 target_link_libraries(true docopt)
+
+add_executable(truncate
+        src/include/globals.h
+        src/truncate.cpp)
+target_link_libraries(truncate docopt)
+
+add_executable(tsort
+        src/include/globals.h
+        src/tsort.cpp)
+target_link_libraries(tsort docopt)
+
+add_executable(tty
+        src/include/globals.h
+        src/tty.cpp)
+target_link_libraries(tty docopt)
+
+add_executable(uname
+        src/include/globals.h
+        src/uname.cpp)
+target_link_libraries(uname docopt)
+
+add_executable(unexpand
+        src/include/globals.h
+        src/unexpand.cpp)
+target_link_libraries(unexpand docopt)
+
+add_executable(uniq
+        src/include/globals.h
+        src/uniq.cpp)
+target_link_libraries(uniq docopt)
+
+add_executable(unlink
+        src/include/globals.h
+        src/unlink.cpp)
+target_link_libraries(unlink docopt)
+
+add_executable(uptime
+        src/include/globals.h
+        src/uptime.cpp)
+target_link_libraries(uptime docopt)
+
+add_executable(users
+        src/include/globals.h
+        src/users.cpp)
+target_link_libraries(users docopt)
+
+add_executable(wc
+        src/include/globals.h
+        src/wc.cpp)
+target_link_libraries(wc docopt)
+
+add_executable(who
+        src/include/globals.h
+        src/who.cpp)
+target_link_libraries(who docopt)
+
+add_executable(whoami
+        src/include/globals.h
+        src/whoami.cpp)
+target_link_libraries(whoami docopt)
+
+add_executable(yes
+        src/include/globals.h
+        src/yes.cpp)
+target_link_libraries(yes docopt)

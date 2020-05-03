@@ -24,6 +24,21 @@ Migrated C++ code Copyright (C) Todd Saharchuk, 2020.
 #include <string>
 #include "docopt/docopt.h"
 // End of C++ includes
+/* The official name of this program (e.g., no 'g' prefix).  */
+#define PROGRAM_NAME b2sum
+
+#define VERSION F_VERSION(PROGRAM_NAME)
+
+constexpr auto USAGE =
+R"(b2sum.
+
+     Usage:
+       b2sum [options]
+
+     Options:
+       -h --help              Show this screen
+       --version              Show version
+)";
 
 int main()
 {
