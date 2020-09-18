@@ -7,3 +7,5 @@ Makefile
 cmake-build-debug/
 build/
 .idea/
+coreutils_cpp.cbp
+cmake_install.cmake
