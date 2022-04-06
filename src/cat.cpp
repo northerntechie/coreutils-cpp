@@ -1,5 +1,6 @@
 /* basename.cpp, migrated from basename.c from coreutils
    cat -- concatenate files and print on the standard output.
+*/
 
  /*
    Copyright (C) 1988-2020 Free Software Foundation, Inc.
