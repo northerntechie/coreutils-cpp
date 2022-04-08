@@ -1,7 +1,4 @@
-/* basename.cpp, migrated from basename.c from coreutils
-   cat -- concatenate files and print on the standard output.
-
- /*
+/* cat -- concatenate files and print on the standard output.
    Copyright (C) 1988-2020 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify
