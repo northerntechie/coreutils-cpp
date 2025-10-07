@@ -1,5 +1,7 @@
 # Coreutils-CPP - A modern C++ interpretation of the GNU coreutils library
 
+NOTE: This repository is archived and is read-only
+
 These are some of the GNU core utilities migrated to C++ code through a 
 complete rewrite using modern C++ conventions and techniques.  This package
 is the union of the GNU fileutils, sh-utils, and textutils packages.
